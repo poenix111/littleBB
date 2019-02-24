@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'prestamo-libro', loadChildren: './prestamo-libro/prestamo-libro.module#PrestamoLibroPageModule' },
   { path: 'devolucion', loadChildren: './devolucion/devolucion.module#DevolucionPageModule' },
+  { path: 'prestamo-libro', loadChildren: './prestamo-libro/prestamo-libro.module#PrestamoLibroPageModule' },
 ];
 
 @NgModule({
