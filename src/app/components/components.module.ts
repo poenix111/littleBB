@@ -1,12 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ToolbarComponent,
+    MenuComponent
+  ],
+  exports: [
+    ToolbarComponent,
+    MenuComponent
+  ],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    RouterModule
   ]
 })
 export class ComponentsModule { }
