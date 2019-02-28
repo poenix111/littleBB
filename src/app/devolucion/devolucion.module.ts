@@ -20,8 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ComponentsModule,
     RouterModule.forChild(routes),
-    ComponentsModule
   ],
   declarations: [DevolucionPage]
 })
