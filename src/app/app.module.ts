@@ -13,7 +13,7 @@ import { ComponentsModule } from './components/components.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule,ComponentsModule ,IonicModule.forRoot(), AppRoutingModule, ComponentsModule],
+  imports: [BrowserModule, ComponentsModule , IonicModule.forRoot(), AppRoutingModule, ComponentsModule],
   providers: [
     StatusBar,
     SplashScreen,

@@ -1,5 +1,4 @@
-<app-toolbar title="Devolución"></app-toolbar>
-<ion-content padding>
+<ion-content padding class="devolucion">
 
   <ion-grid>
     <ion-row>
@@ -13,12 +12,15 @@
         <p>Nombre del empleado: </p>
       </ion-col>
     </ion-row>
-    <ion-row >
-      <p>Aqui va la datagrid</p>
+    <ion-row>
+
+      <!-- Aqui comienza el datagrid -->
+      <app-datagrid></app-datagrid>
+
     </ion-row>
 
     <ion-row>
-        <ion-button color="danger">Libro dañado</ion-button>
+      <ion-button color="danger">Libro dañado</ion-button>
     </ion-row>
   </ion-grid>
 

@@ -4,15 +4,18 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MenuComponent } from './menu/menu.component';
+import { DatagridComponent } from './datagrid/datagrid.component';
 
 @NgModule({
   declarations: [
     ToolbarComponent,
-    MenuComponent
+    MenuComponent,
+    DatagridComponent,
   ],
   exports: [
     ToolbarComponent,
-    MenuComponent
+    MenuComponent,
+    DatagridComponent,
   ],
   imports: [
     CommonModule,

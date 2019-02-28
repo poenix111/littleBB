@@ -26,14 +26,14 @@ export class MenuComponent implements OnInit {
   }
   go_login() {
     this.router.navigateByUrl('/login');
-    this.title = "Login";
+    this.title = 'Login';
   }
   go_prestamo() {
     this.router.navigateByUrl('/prestamo-libro');
-    this.title = "Prestamo Libro";
+    this.title = 'Prestamo Libro';
   }
   go_devolucion() {
     this.router.navigateByUrl('/devolucion');
-    this.title = "Devolucion";
+    this.title = 'Devolucion';
   }
 }
