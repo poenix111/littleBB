@@ -1,28 +1,16 @@
 <ion-content padding class="devolucion">
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Codigo de usuario</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <p>Nombre del empleado: </p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
 
-      <!-- Aqui comienza el datagrid -->
-      <app-datagrid></app-datagrid>
+  <ion-item>
+      <ion-label>Codigo de folio</ion-label>
+      <ion-input></ion-input>
+  </ion-item>
 
-    </ion-row>
+  <p>Nombre del empleado: </p>
 
-    <ion-row>
-      <ion-button color="danger">Libro dañado</ion-button>
-    </ion-row>
-  </ion-grid>
+  <!-- Aqui comienza el datagrid -->
+  <app-datagrid devolucion="false"></app-datagrid>
 
+  <ion-button color="danger">Libro dañado</ion-button>
 
 </ion-content>
