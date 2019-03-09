@@ -10,6 +10,11 @@ const routes: Routes = [
   { path: 'prestamo-libro', loadChildren: './prestamo-libro/prestamo-libro.module#PrestamoLibroPageModule' },
   { path: 'registrar-usuario', loadChildren: './registrar-usuario/registrar-usuario.module#RegistrarUsuarioPageModule' },
   { path: 'registrar-usuario', loadChildren: './registrar-usuario/registrar-usuario.module#RegistrarUsuarioPageModule' },
+  { path: 'registrar-libro', loadChildren: './registrar-libro/registrar-libro.module#RegistrarLibroPageModule' },
+  { path: 'registrar-material', loadChildren: './registrar-material/registrar-material.module#RegistrarMaterialPageModule' },
+  { path: 'mostrar-usuarios', loadChildren: './mostrar-usuarios/mostrar-usuarios.module#MostrarUsuariosPageModule' },
+  { path: 'mostrar-libros', loadChildren: './mostrar-libros/mostrar-libros.module#MostrarLibrosPageModule' },
+  { path: 'mostrar-material', loadChildren: './mostrar-material/mostrar-material.module#MostrarMaterialPageModule' },
 ];
 
 @NgModule({
