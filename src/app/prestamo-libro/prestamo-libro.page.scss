@@ -1,11 +1,11 @@
 .prestamo_libro{
     text-align: center;
-    top: 20%;
+    top: 10%;
     width: 100%;
-    left: 8%;
+    //left: 8%;
 }
 #checkbox_extend{
-    top: 14px;
+    top: 16px;
 }
 
 #boton_info{
@@ -15,4 +15,20 @@
 .datagrid{
     text-align: right;
     top: 20%;
+}
+
+.usuario{
+    display: flex;
+}
+
+.libro{
+    display: flex;
+}
+
+.extension{
+    display: inline-block;
+    text-align: center;
+}
+.alinear{
+    display: flex;
 }
