@@ -1,61 +1,48 @@
 <ion-content padding>
   <ion-content class="prestamo_libro">
-    <ion-grid fixed="true">
-      <ion-row>
-        <ion-col>
-          <ion-grid>
-            <ion-row>
-              <p>Código de usuario:</p>
-              <ion-input placeholder="Ingrese..."></ion-input>
-              <ion-button shape="round" id="bonton_info">
-                <ion-icon name="eye"></ion-icon>
-              </ion-button>
-            </ion-row>
-            <ion-row>
-              <p>Código de libro: </p>
-              <ion-input placeholder="Ingrese..."></ion-input>
-              <ion-button shape="round" id="bonton_info">
-                <ion-icon name="add-circle-outline"></ion-icon>
-              </ion-button>
 
-            </ion-row>
-            <ion-row>
-              <ion-checkbox color="light" id="checkbox_extend"></ion-checkbox>
-              <p>Extension</p>
-              <ion-button shape="round" id="bonton_info">
-                <ion-icon name="information-circle-outline"></ion-icon>
-              </ion-button>
-            </ion-row>
-
-            <ion-row>
-              <ion-button color="light" expand="full">Confirmar</ion-button>
-            </ion-row>
-          </ion-grid>
-        </ion-col>
-
-        <ion-col>
-          <ion-grid>
-            <ion-row>
-              <app-datagrid devolucion = "false"></app-datagrid>
-            </ion-row>
-
-            <ion-row>
-              <p>Empleado: Muñoz Marin Brian Alejandro</p>
-            </ion-row>
-
-            <ion-row>
-              <p>Codigo: </p>
-            </ion-row>
-
-            <ion-row>
-              <ion-button color="success" expand="full">Generar tickect</ion-button>
-            </ion-row>
-          </ion-grid>
-        </ion-col>
-      </ion-row>
+    <div class="usuario">
+      <p>Código de usuario:</p>
+      <ion-input placeholder="Ingrese..."></ion-input>
+      <ion-button shape="round" id="bonton_info">
+        <ion-icon name="eye"></ion-icon>
+      </ion-button>
+    </div>
 
 
-    </ion-grid>
+    <div class="libro">
+      <p>Código de libro: </p>
+      <ion-input placeholder="Ingrese..."></ion-input>
+      <ion-button shape="round" id="bonton_info">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </div>
+
+
+    <div class="extension">
+      <div class="alinear">
+        <ion-checkbox color="light" id="checkbox_extend"></ion-checkbox>
+        <p>Extension</p>
+        <ion-button shape="round" id="bonton_info">
+          <ion-icon name="information-circle-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+
+
+
+
+
+    <ion-button color="light" expand="full">Confirmar</ion-button>
+
+    <app-datagrid devolucion="false"></app-datagrid>
+
+    <p>Empleado: Muñoz Marin Brian Alejandro</p>
+
+    <p>Codigo: </p>
+
+    <ion-button color="success" expand="full">Generar tickect</ion-button>
+
 
 
 
