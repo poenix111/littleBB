@@ -38,6 +38,14 @@ export class MenuComponent implements OnInit {
   }
   go_registroUser(){
     this.router.navigateByUrl('/registrar-usuario');
-    this.title = 'Registro';
+    this.title = 'Registro usuario';
+  }
+  go_registroLibro(){
+    this.router.navigateByUrl('/registrar-libro');
+    this.title = 'Registro libro';
+  }
+  go_registroMaterial(){
+    this.router.navigateByUrl('/registrar-material');
+    this.title = 'Registro material';
   }
 }
