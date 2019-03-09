@@ -36,4 +36,8 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/devolucion');
     this.title = 'Devolucion';
   }
+  go_registroUser(){
+    this.router.navigateByUrl('/registrar-usuario');
+    this.title = 'Registro';
+  }
 }
