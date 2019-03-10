@@ -1,0 +1,54 @@
+class Libro:
+    def __init__(self, conexion, cursor):
+        self.conexion = conexion
+        self.cursor = cursor
+
+    def crear(self, nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion):
+
+        insertar = (
+            'INSERT INTO libro(nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion)')
+
+        query = ('SELECT * FROM libro WHERE nombre = %s AND autor = %s AND edicion = %s')   
+        #Para validar que no tenga que solo actualizar la existecia del libro
+        self.cursor.execute(query, (nombre, autor, edicion))
+        result = self.cursor.fetchall()
+        if(result):
+            existencia = int(result[0][9])
+            existencia = existencia + 1
+            disponibles = int(result[0][11])
+            disponibles = disponibles + 1
+
+            updateExistencia = ('UPDATE libro SET existencia = %s AND disponibles = %s')
+            self.cursor.execute(updateExistencia, (existencia,disponibles))#Esta raro no se actualiza, verificar porque
+            self.conexion.commit()
+        else:
+            self.cursor.execute(insertar, (nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion))
+            self.conexion.commit()
+    
+    def mostrarAll(self):
+        query = ('SELECT * FROM libro')
+        self.cursor.execute(query)
+        consulta = self.cursor.fetchall()
+
+        resultados = []
+
+        for r in consulta:
+            libro = {
+                "id_libro":r[0],
+                "nombre":r[1],
+                "autor":r[2],
+                "genero":r[3],
+                "edicion":r[4],
+                "editorial":r[5],
+                "idioma":r[6],
+                "isbn":r[7],
+                "descripcion":r[8],
+                "existencia":r[9],
+                "unicos":r[10],
+                "disponibles":r[11]
+            }
+            resultados.append(libro)
+        return resultados
+
+
+
