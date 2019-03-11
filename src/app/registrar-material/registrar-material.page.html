@@ -4,16 +4,16 @@
     <div>
         <ion-item  class="type">
           <ion-label>Tipo</ion-label>
-          <ion-select value="laptop" okText="Okay" cancelText="Dismiss">
+          <ion-select [(ngModel)]="tipo" value="laptop" okText="Okay" cancelText="Dismiss">
             <ion-select-option value="laptop">Laptop</ion-select-option>
             <ion-select-option value="bocina">Bocina</ion-select-option>
             <ion-select-option value="proyector">Proyector</ion-select-option>
           </ion-select>
         </ion-item>
       </div>
-    <ion-input placeholder="Marca"></ion-input>
-    <ion-textarea placeholder="Descripción"></ion-textarea>-
-    <ion-input placeholder="Numero de serie"></ion-input>
-    <ion-button color="success" expand="full">Continuar</ion-button>
+    <ion-input [(ngModel)]="marca" placeholder="Marca"></ion-input>
+    <ion-textarea [(ngModel)]="descripcion" placeholder="Descripción"></ion-textarea>-
+    <ion-input [(ngModel)]="numSerie" placeholder="Numero de serie"></ion-input>
+    <ion-button (click)="registrarMaterial()" color="success" expand="full">Continuar</ion-button>
 
 </ion-content>

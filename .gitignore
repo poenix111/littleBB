@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 *~
+*.pyc
 *.sw[mnpcod]
 *.log
 *.tmp

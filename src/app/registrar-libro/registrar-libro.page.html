@@ -1,15 +1,15 @@
 <ion-content padding class="mainLibro">
 
   <div>
-    <ion-input placeholder="Nombre del libro"></ion-input>
-    <ion-input placeholder="Nombre del autor"></ion-input>
-    <ion-input placeholder="Genero"></ion-input>
-    <ion-input placeholder="Edicion"></ion-input>
-    <ion-input placeholder="Editorial"></ion-input>
-    <ion-input placeholder="Idioma"></ion-input>
-    <ion-input placeholder="ISBN"></ion-input>
-    <ion-textarea placeholder="Descripción"></ion-textarea>-
-    <ion-button color="light" expand="full">Insertar</ion-button>
+    <ion-input [(ngModel)]="nombreLibro" placeholder="Nombre del libro"></ion-input>
+    <ion-input [(ngModel)]="nombreAutor" placeholder="Nombre del autor"></ion-input>
+    <ion-input [(ngModel)]="genero" placeholder="Genero"></ion-input>
+    <ion-input [(ngModel)]="edicion" placeholder="Edicion"></ion-input>
+    <ion-input [(ngModel)]="editorial" placeholder="Editorial"></ion-input>
+    <ion-input [(ngModel)]="idioma" placeholder="Idioma"></ion-input>
+    <ion-input [(ngModel)]="isbn" placeholder="ISBN"></ion-input>
+    <ion-textarea [(ngModel)]="descripcion" placeholder="Descripción"></ion-textarea>-
+    <ion-button (click)="registrarLibro()" color="light" expand="full">Insertar</ion-button>
   </div>
 
 </ion-content>

@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-
+  public  dominio = 'http://127.0.0.1:5000';
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -24,4 +24,5 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
+
 }
