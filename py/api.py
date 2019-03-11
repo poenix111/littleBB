@@ -70,5 +70,11 @@ def recuperarMaterial():
     result = material.mostrarAll()
     print(result)
     return jsonify(result)
+@app.route('/recuperar-usuarios', methods = ['GET'])
+def recuperarUsuarios():
+    usuario = Usuario(conexion,cursor)
+    result = usuario.mostrarAll()
+    return jsonify(result)
+
 
 app.run(debug=True)

@@ -38,4 +38,25 @@ class Usuario:
     def actualizar(self):
         pass
 
- 
+    def mostrarAll(self):
+        query = ('SELECT * FROM usuario')
+        self.cursor.execute(query)
+        consulta = self.cursor.fetchall()
+
+        resultados = []
+
+        for u in consulta:
+            usuario = {
+                "id_usuario":u[0],
+                "nombre":u[1],
+                "tipo":u[2],
+                "email":u[3],
+                "telefono":u[4],
+                "pass":u[5],
+                "estado":u[6],
+                "fechaRegistro":u[7],
+                "penalizaciones":u[8],
+                "area":u[9]
+            }
+            resultados.append(usuario)
+        return resultados

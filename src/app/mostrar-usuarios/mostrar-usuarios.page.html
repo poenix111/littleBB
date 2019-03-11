@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mostrar-usuarios</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-
+<ion-content padding class = "mainMostrarUsuarios">
+  <ion-item>
+    <ion-label>Codigo</ion-label>
+    <ion-input [(ngModel)]="buscar"></ion-input>
+    <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
+  </ion-item>
+  <ion-card *ngFor="let u of usuarios">
+    <ion-card-subtitle>Codigo: {{u.id_usuario}}</ion-card-subtitle>
+      <ion-card-title>{{u.nombre}}</ion-card-title>
+      <ion-card-content>
+        Fecha: {{u.fechaRegistro}} <br>
+        E-Mail {{u.email}} <br>
+        Situacion:
+        <a *ngIf="u.estado == 1">Activo</a>
+        <a *ngIf="u.estado == 0">Bloqueado</a> <br>
+        Penalizaciones {{u.penalizaciones}} <br>
+        Telefono: {{u.telefono}} <br>
+        Tipo de usuario: 
+        <a *ngIf="u.tipo == 1">Estudiante</a>
+        <a *ngIf="u.tipo == 2">Maestro</a>
+        <a *ngIf="u.tipo == 3">Administrativo</a><br>
+        Area: {{u.area}}
+      </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -57,4 +57,8 @@ export class MenuComponent implements OnInit {
     this.title = 'Mostrar material';
     this.router.navigateByUrl('/mostrar-material');
   }
+  go_mostrarUsuarios(){
+    this.title = 'Mostrar usuarios';
+    this.router.navigateByUrl('/mostrar-usuarios');
+  }
 }
