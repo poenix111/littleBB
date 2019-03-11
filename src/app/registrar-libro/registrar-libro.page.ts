@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-registrar-libro',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrarLibroPage implements OnInit {
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
+    
   }
 
 }

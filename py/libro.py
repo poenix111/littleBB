@@ -29,7 +29,7 @@ class Libro:
         query = ('SELECT * FROM libro')
         self.cursor.execute(query)
         consulta = self.cursor.fetchall()
-
+        
         resultados = []
 
         for r in consulta:
