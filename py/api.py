@@ -64,4 +64,11 @@ def recuperarLibros():
     print(result)
     return jsonify(result)
 
+@app.route('/recuperar-material/', methods = ['GET'])
+def recuperarMaterial():
+    material = Material(conexion,cursor)
+    result = material.mostrarAll()
+    print(result)
+    return jsonify(result)
+
 app.run(debug=True)
