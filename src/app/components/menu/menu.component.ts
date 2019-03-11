@@ -48,4 +48,9 @@ export class MenuComponent implements OnInit {
     this.router.navigateByUrl('/registrar-material');
     this.title = 'Registro material';
   }
+
+  go_mostrarLibros(){
+    this.router.navigateByUrl('/mostrar-libros');
+    this.title = 'Mostrar libros';
+  }
 }

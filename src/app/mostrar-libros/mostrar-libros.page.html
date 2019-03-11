@@ -1,9 +1,26 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mostrar-libros</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding class="mainMostrarLibros">
 
-<ion-content padding>
+  <ion-item>
+    <ion-label>ISBN</ion-label>
+    <ion-input [(ngModel)]="buscar"></ion-input>
+    <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
+  </ion-item>
+
+  <ion-card *ngFor="let l of libros" class = 'card'>
+    <ion-card-header>
+      <ion-card-subtitle>{{l.autor}}</ion-card-subtitle>
+      <ion-card-title>{{l.nombre}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Descripcion: {{l.descripcion}} <br>
+      Editorial: {{l.editorial}} Edicion: {{l.edicion}}<br>
+      Disponible: {{l.disponibles}},  Unicos: {{l.unicos}},  Existencia: {{l.existencia}}<br>
+      Genero: {{l.genero}}<br>
+      Idioma: {{l.idioma}}<br>
+      ISBN: {{l.isbn}}
+    </ion-card-content>
+    
+  </ion-card>
 
 </ion-content>
