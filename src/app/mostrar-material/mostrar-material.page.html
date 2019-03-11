@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>mostrar-material</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content padding class = "mainMostrarMaterial">
+  <ion-item>
+    <ion-label>Numero de serie</ion-label>
+    <ion-input [(ngModel)]="buscar"></ion-input>
+    <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
+  </ion-item>
 
-<ion-content padding>
+  <ion-card *ngFor="let m of materiales">
+    <ion-card-subtitle>{{m.marca}}</ion-card-subtitle>
+      <ion-card-title *ngIf="m.tipo === 1">Laptop</ion-card-title>
+      <ion-card-title *ngIf="m.tipo === 2">Bocina</ion-card-title>
+      <ion-card-title *ngIf="m.tipo === 3">Proyector</ion-card-title>
+      <ion-card-content>
+        Descripcion: {{m.descripcion}} <br>
+        Numero de serie: {{m.numSerie}}
+      </ion-card-content>
+  </ion-card>
 
+ 
 </ion-content>
