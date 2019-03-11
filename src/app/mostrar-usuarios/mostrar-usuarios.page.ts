@@ -1,15 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Global} from '../global';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-mostrar-usuarios',
   templateUrl: './mostrar-usuarios.page.html',
   styleUrls: ['./mostrar-usuarios.page.scss'],
 })
 export class MostrarUsuariosPage implements OnInit {
-
-  constructor() { }
+  buscar = '';
+  usuarios = []
+  constructor(public http:HttpClient) { }
 
   ngOnInit() {
+  }
+
+  mostrar(){
+    if(this.buscar === '*'){
+      const useful = Global.dominio + '/recuperar-usuarios';
+
+      this.http.get(useful).subscribe(data =>{
+        // tslint:disable-next-line: forin
+        for (const u in data) {
+          this.usuarios.push(data[u]);
+        }
+      }, error =>{
+      });
+
+    }
   }
 
 }
