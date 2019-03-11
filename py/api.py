@@ -9,7 +9,7 @@ CORS(app)
 conexion = mysql.connector.connect(user='brian',password='ashe123',database='biblioteca')
 cursor = conexion.cursor()
 
-@app.route('/registrar-usuario-api/', methods = ['GET'])
+@app.route('/registrar-usuario-api', methods = ['GET'])
 @cross_origin()
 def registrarUsuario():
     user = Usuario(conexion, cursor)
@@ -32,13 +32,13 @@ def registrarUsuario():
 def registrarLibro():
     libro = Libro(conexion, cursor)
     nombre = request.args.get('nombre')
-    autor = request.args.get['autor']
-    genero = request.args.get['genero']
-    edicion = request.args.get['edicion']
-    editorial = request.args.get['editorial']
-    idioma = request.args.get['idioma']
-    isbn = request.args.get['isbn']
-    descripcion = request.args.get['descripcion']
+    autor = request.args.get('autor')
+    genero = request.args.get('genero')
+    edicion = request.args.get('edicion')
+    editorial = request.args.get('editorial')
+    idioma = request.args.get('idioma')
+    isbn = request.args.get('isbn')
+    descripcion = request.args.get('descripcion')
     libro.crear(nombre,autor,genero,edicion,editorial,idioma,isbn,descripcion)
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
@@ -47,10 +47,10 @@ def registrarLibro():
 @app.route("/registrar-material", methods = ['GET'])
 def registrarMaterial():
     material = Material(conexion,cursor)
-    tipo = request.args.get['tipo']
-    marca = request.args.get['marca']
-    descripcion = request.args.get['descripcion']
-    numSerie = request.args.get['numSerie']
+    tipo = request.args.get('tipo')
+    marca = request.args.get('marca')
+    descripcion = request.args.get('descripcion')
+    numSerie = request.args.get('numSerie')
     material.crear(tipo, marca, descripcion, numSerie)
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")

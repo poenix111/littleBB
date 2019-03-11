@@ -4,9 +4,18 @@ class Material:
         self.cursor = cursor
 
     def crear(self, tipo, marca, descripcion, numSerie):
-        insert = ('INSERT INTO material(tipo, marca, descripcion, numSerie VALUES (%s,%s,%s,%s)')
-        self.conexion.execute(insert, (tipo, marca, descripcion. numSerie))
-        self.cursor.commit()
+        insert = ('INSERT INTO material(tipo, marca, descripcion, numSerie) VALUES (%s,%s,%s,%s)')
+        tipoReal = type(int)
+
+        if(tipo == 'laptop' or tipo == ''):
+            tipoReal = 1
+        elif(tipo == 'bocina'):
+            tipoReal = 2
+        elif(tipo == 'proyector'):
+            tipoReal = 3
+        
+        self.cursor.execute(insert, (tipoReal, marca, descripcion, numSerie))
+        self.conexion.commit()
                 
 
     def mostrarAll(self):
