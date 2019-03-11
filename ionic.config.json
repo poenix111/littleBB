@@ -1,5 +1,15 @@
 {
   "name": "littleBB",
   "integrations": {},
-  "type": "angular"
+  "type": "angular",
+  "proxies" : [
+    {
+      "path" : "/registrar-usuario-api",
+      "proxyUrl" : "http://127.0.0.1:5000/registrar-usuario-api/'"
+    },
+    {
+      "path" : "/registrar-libro/",
+      "proxyUrl" : "http://127.0.0.1:5000/registrar-libro"
+    }
+  ]
 }
