@@ -1,0 +1,86 @@
+<ion-content padding class="mainEditarUsuario">
+  <ion-item>
+    <ion-label position="fixed">Nombre</ion-label>
+    <ion-input value="{{user['nombre']}}" [(ngModel)]="data['nombre']" placeholder="nombre" inputmode="text">
+    </ion-input>
+  </ion-item>
+
+  <!--   <ion-input [(ngModel)]="data['id_usuario']"  value="{{user['id_usuario']}}" placeholder="Usuario" inputmode="numeric" maxlength="7" minlength="6"></ion-input>
+ -->
+  <div id="contraseña">
+    <ion-item>
+      <ion-label position="fixed">Contraseña</ion-label>
+      <ion-input [(ngModel)]="data['pass']" value="{{user['pass']}}" placeholder="Contraseña" type="password"
+        inputmode="password" minlength="5"></ion-input>
+      <ion-button shape="round" id="bonton_info">
+        <ion-icon name="eye"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+
+  <div *ngIf="user['tipo'] == 1">
+    <ion-item class="type">
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="data['tipo']" value="estudiante" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="estudiante">Estudiante</ion-select-option>
+        <ion-select-option value="maestro">Maestro</ion-select-option>
+        <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div *ngIf="user['tipo'] == 2">
+    <ion-item class="type">
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="data['tipo']" value="maestro" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="estudiante">Estudiante</ion-select-option>
+        <ion-select-option value="maestro">Maestro</ion-select-option>
+        <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <div *ngIf="user['tipo'] == 3">
+    <ion-item class="type">
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="data['tipo']" value="bibliotecario" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="estudiante">Estudiante</ion-select-option>
+        <ion-select-option value="maestro">Maestro</ion-select-option>
+        <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <ion-item>
+    <ion-label position="fixed">Email</ion-label>
+    <ion-input [(ngModel)]="data['email']" value="{{user['email']}}" placeholder="E-mail" inputmode="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Telefono</ion-label>
+    <ion-input [(ngModel)]="data['telefono']" value="{{user['telefono']}}" placeholder="Telefono" type="tel"
+      inputmode="tel"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="fixed">Area</ion-label>
+    <ion-input [(ngModel)]="data['area']" value="{{user['area']}}" placeholder="Area" type="text" inputmode="text">
+    </ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Penalizaciones</ion-label>
+    <ion-input [(ngModel)]="data['penalizaciones']" value="{{user['penalizaciones']}}" placeholder="penalizaciones"
+      type="numeric" inputmode="text"></ion-input>
+  </ion-item>
+
+
+  <ion-item class="type">
+    <ion-label>Tipo</ion-label>
+    <ion-select [(ngModel)]="data['estado']" value="{{user['estado']}}" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="1">Activo</ion-select-option>
+      <ion-select-option value="0">Inactivo</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-button (click)="actualizar()" color="success" expand="full">Actualizar</ion-button>
+</ion-content>

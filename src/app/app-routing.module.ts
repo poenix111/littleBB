@@ -15,6 +15,9 @@ const routes: Routes = [
   { path: 'mostrar-usuarios', loadChildren: './mostrar-usuarios/mostrar-usuarios.module#MostrarUsuariosPageModule' },
   { path: 'mostrar-libros', loadChildren: './mostrar-libros/mostrar-libros.module#MostrarLibrosPageModule' },
   { path: 'mostrar-material', loadChildren: './mostrar-material/mostrar-material.module#MostrarMaterialPageModule' },
+  { path: 'editar-usuarios', loadChildren: './editar-usuarios/editar-usuarios.module#EditarUsuariosPageModule' },
+  { path: 'editar-libro', loadChildren: './editar-libro/editar-libro.module#EditarLibroPageModule' },
+  { path: 'editar-material', loadChildren: './editar-material/editar-material.module#EditarMaterialPageModule' },
 ];
 
 @NgModule({
