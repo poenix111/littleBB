@@ -6,7 +6,7 @@
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 
-  <ion-card *ngFor="let l of libros" class = 'card'>
+  <ion-card *ngFor="let l of libros" class = 'card' (click)="sendInfo(l)"> 
     <ion-card-header>
       <ion-card-subtitle>{{l.autor}}</ion-card-subtitle>
       <ion-card-title>{{l.nombre}}</ion-card-title>

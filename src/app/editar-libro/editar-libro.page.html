@@ -1,0 +1,56 @@
+<ion-content padding class='mainEditarLibro'>
+
+  <div>
+    <ion-item>
+      <ion-label position="fixed">Nombre</ion-label>
+      <ion-input [(ngModel)]="data['nombre']" value="{{libro['nombre']}}" placeholder="Nombre del libro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Autor</ion-label>
+      <ion-input [(ngModel)]="data['autor']" value="{{libro['autor']}}" placeholder="Nombre del autor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Genero</ion-label>
+      <ion-input [(ngModel)]="data['genero']" value="{{libro['genero']}}" placeholder="Genero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Edicion</ion-label>
+      <ion-input [(ngModel)]="data['edicion']" value="{{libro['edicion']}}" placeholder="Edicion" type="number"
+        inputmode="numeric"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Editorial</ion-label>
+      <ion-input [(ngModel)]="data['editorial']" value="{{libro['editorial']}}" placeholder="Editorial"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Idioma</ion-label>
+      <ion-input [(ngModel)]="data['idioma']" value="{{libro['idioma']}}" placeholder="Idioma"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">ISBN</ion-label>
+      <ion-input [(ngModel)]="data['isbn']" value="{{libro['isbn']}}" placeholder="ISBN"></ion-input>
+
+    </ion-item>
+    <ion-item>
+      <ion-label position="fixed">Descripcion</ion-label>
+      <ion-textarea [(ngModel)]="data['descripcion']" value="{{libro['descripcion']}}" placeholder="Descripción">
+      </ion-textarea>-
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="fixed">Existencia</ion-label>
+      <ion-input [(ngModel)]="data['existencia']" value="{{libro['existencia']}}" placeholder="Existencia" type="number"
+        inputmode="numeric"></ion-input>
+      <ion-label position="fixed">Unicos</ion-label>
+      <ion-input [(ngModel)]="data['unicos']" value="{{libro['unicos']}}" placeholder="Existencia" type="number"
+        inputmode="numeric"></ion-input>
+      <ion-label position="fixed">Disponibles</ion-label>
+      <ion-input [(ngModel)]="data['disponibles']" value="{{libro['disponibles']}}" placeholder="Existencia"
+        type="number" inputmode="numeric"></ion-input>
+    </ion-item>
+
+    <ion-button (click)="actualizar()" color="light" expand="full">Actualizar</ion-button>
+  </div>
+
+</ion-content>

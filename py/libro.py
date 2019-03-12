@@ -22,7 +22,8 @@ class Libro:
             updateExistencia = (
                 'UPDATE libro SET existencia = %s, disponibles = %s WHERE id_libro = %s')
             # Esta raro no se actualiza, verificar porque
-            self.cursor.execute(updateExistencia, (existencia, disponibles,result[0][0]))
+            self.cursor.execute(
+                updateExistencia, (existencia, disponibles, result[0][0]))
             self.conexion.commit()
         else:
             self.cursor.execute(
@@ -53,3 +54,9 @@ class Libro:
             }
             resultados.append(libro)
         return resultados
+
+    def actualizar(self, libro):
+        update = ('UPDATE libro SET nombre = %s, autor = %s, genero = %s, edicion = %s, editorial = %s, idioma = %s, isbn = %s, descripcion = %s, existencia = %s, unicos = %s, disponibles = %s WHERE id_libro = %s')
+        self.cursor.execute(update, (libro['nombre'], libro['autor'], libro['genero'], libro['edicion'], libro['editorial'], libro['idioma'],
+                                     libro['isbn'], libro['descripcion'], libro['existencia'], libro['unicos'], libro['disponibles'], libro['id_libro']))
+        self.conexion.commit()

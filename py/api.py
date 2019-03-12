@@ -5,7 +5,7 @@ from material import Material
 from usuario import Usuario
 from flask_cors import CORS,cross_origin
 app = Flask(__name__)
-CORS(app)
+core = CORS(app)
 conexion = mysql.connector.connect(user='brian',password='ashe123',database='biblioteca')
 cursor = conexion.cursor()
 
@@ -77,4 +77,22 @@ def recuperarUsuarios():
     return jsonify(result)
 
 
+@app.route('/editar-usuario', methods = ['POST'])
+def editarUsuario():
+    user = Usuario(conexion, cursor)
+    data = request.get_json(force=True)
+    print(data)
+    user.actualizar(data)
+    respuesta = make_response("Hello World")
+    respuesta.headers.add("Access-Control-Allow-Origin","*")
+    return respuesta
+
+@app.route('/editar-libro', methods = ['POST'])
+def editarLibro():
+    libro = Libro(conexion, cursor)
+    data = request.get_json(force = True)
+    libro.actualizar(data)
+    respuesta = make_response("Hello World")
+    respuesta.headers.add("Access-Control-Allow-Origin","*")
+    return respuesta
 app.run(debug=True)
