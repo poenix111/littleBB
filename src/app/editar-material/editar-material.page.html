@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>editar-material</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content padding>
-
+<ion-content padding class="mainEditarMaterial">
+  <div>
+    <ion-item class="type">
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="data['tipo']" placeholder="{{tipo}}"
+        okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="1">Laptop</ion-select-option>
+        <ion-select-option value="2">Bocina</ion-select-option>
+        <ion-select-option value="3">Proyector</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  <ion-item>
+    <ion-label position="fixed">Marca</ion-label>
+    <ion-input [(ngModel)]="data['marca']" value="{{material['marca']}}" placeholder="Marca"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Descripcion</ion-label>
+    <ion-textarea [(ngModel)]="data['descripcion']" value="{{material['descripcion']}}" placeholder="Descripción">
+    </ion-textarea>-
+  </ion-item>
+  <ion-item>
+    <ion-label position="fixed">Numero de serie</ion-label>
+    <ion-input [(ngModel)]="data['numSerie']" value="{{material['numSerie']}}" placeholder="Numero de serie">
+    </ion-input>
+  </ion-item>
+  <ion-button (click)="actualizar()" color="success" expand="full">Actualizar</ion-button>
 </ion-content>

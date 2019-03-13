@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { ParamService } from '../param.service';
+import { Global } from '../global';
 @Component({
   selector: 'app-editar-material',
   templateUrl: './editar-material.page.html',
@@ -7,9 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarMaterialPage implements OnInit {
 
-  constructor() { }
+  data = {}
+  material = {}
+  tipo:string;
+  constructor(public router:Router, public http:HttpClient, public service:ParamService) { 
+    this.material = this.service.info;
+    this.data = this.material;
+    if(this.material['tipo'] === 1){
+      this.tipo = 'Laptop';
+    }
+    else if(this.material['tipo'] === 2){
+      this.tipo = 'Bocina';
+    }
+    else if(this.material['tipo'] === 3){
+      this.tipo = 'Proyector';
+    }
+    
+
+  }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter(){
+ /*    this.material = this.service.info;
+    this.data = this.material; */
+  }
+
+  actualizar(){
+    const useful = Global.dominio + '/editar-material';
+
+    this.http.post(useful, this.data).subscribe( info =>{
+      console.log(useful);
+    }, error =>{
+      console.log('ERROR');
+    });
+
+    this.router.navigateByUrl('/mostrar-material');
   }
 
 }

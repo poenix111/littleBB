@@ -5,7 +5,7 @@
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 
-  <ion-card *ngFor="let m of materiales">
+  <ion-card *ngFor="let m of materiales" (click)="sendInfo(m)">
     <ion-card-subtitle>{{m.marca}}</ion-card-subtitle>
       <ion-card-title *ngIf="m.tipo === 1">Laptop</ion-card-title>
       <ion-card-title *ngIf="m.tipo === 2">Bocina</ion-card-title>
