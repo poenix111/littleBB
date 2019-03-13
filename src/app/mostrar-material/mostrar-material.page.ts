@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Global} from '../global';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ParamService } from '../param.service';
+
 @Component({
   selector: 'app-mostrar-material',
   templateUrl: './mostrar-material.page.html',
@@ -9,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class MostrarMaterialPage implements OnInit {
   buscar = '';
   materiales = [];
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public router:Router, public service:ParamService) { }
 
   ngOnInit() {
   }
@@ -29,6 +32,11 @@ export class MostrarMaterialPage implements OnInit {
       });
 
     }
+  }
+
+  sendInfo(material){
+    this.router.navigateByUrl('/editar-material');
+    this.service.info = material;
   }
 
 }

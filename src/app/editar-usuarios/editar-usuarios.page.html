@@ -18,18 +18,18 @@
     </ion-item>
   </div>
 
-  <div *ngIf="user['tipo'] == 1">
+  <div>
     <ion-item class="type">
       <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="data['tipo']" value="estudiante" okText="Okay" cancelText="Dismiss">
-        <ion-select-option value="estudiante">Estudiante</ion-select-option>
-        <ion-select-option value="maestro">Maestro</ion-select-option>
-        <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
+      <ion-select [(ngModel)]="data['tipo']" placeholder="{{tipoReal}}" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="1">Estudiante</ion-select-option>
+        <ion-select-option value="2">Maestro</ion-select-option>
+        <ion-select-option value="3">Bibliotecario</ion-select-option>
       </ion-select>
     </ion-item>
   </div>
 
-  <div *ngIf="user['tipo'] == 2">
+ <!--  <div *ngIf="user['tipo'] == 2">
     <ion-item class="type">
       <ion-label>Tipo</ion-label>
       <ion-select [(ngModel)]="data['tipo']" value="maestro" okText="Okay" cancelText="Dismiss">
@@ -49,7 +49,7 @@
         <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
       </ion-select>
     </ion-item>
-  </div>
+  </div> -->
   <ion-item>
     <ion-label position="fixed">Email</ion-label>
     <ion-input [(ngModel)]="data['email']" value="{{user['email']}}" placeholder="E-mail" inputmode="email"></ion-input>
@@ -75,7 +75,7 @@
 
   <ion-item class="type">
     <ion-label>Tipo</ion-label>
-    <ion-select [(ngModel)]="data['estado']" value="{{user['estado']}}" okText="Okay" cancelText="Dismiss">
+    <ion-select [(ngModel)]="data['estado']" placeholder="{{estado}}" okText="Okay" cancelText="Dismiss">
       <ion-select-option value="1">Activo</ion-select-option>
       <ion-select-option value="0">Inactivo</ion-select-option>
     </ion-select>

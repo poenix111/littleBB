@@ -95,4 +95,12 @@ def editarLibro():
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
+@app.route('/editar-material', methods = ['POST'])
+def editarMaterial():
+    material = Material(conexion,cursor)
+    data = request.get_json(force = True)
+    material.actualizar(data)
+    respuesta = make_response("Hello World")
+    respuesta.headers.add("Access-Control-Allow-Origin","*")
+    return respuesta
 app.run(debug=True)

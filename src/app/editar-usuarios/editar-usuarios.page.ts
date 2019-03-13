@@ -23,17 +23,41 @@ export class EditarUsuariosPage implements OnInit {
     'penalizaciones':0 */
   };
   help = true;
+  tipoReal:string;
+  estado :string;
   constructor(public router: Router, public service: ParamService, public http : HttpClient) {
-  }
-
-  ngOnInit() {
-  }
-  ionViewDidEnter(){
     console.log(this.user.length)
     this.user = this.service.info;
     this.userCopy = this.user;
     console.log(this.user);
     this.data = this.user;
+
+    if(this.user['tipo'] === 1) {
+      this.tipoReal = 'Estudiante';
+    }
+    else if(this.user['tipo'] === 2) {
+      this.tipoReal = 'Maestro';
+    }
+    else if(this.user['tipo'] === 3) {
+      this.tipoReal = 'Bibliotecario';
+    }
+
+    if(this.user['estado'] === 1){
+      this.estado = 'Activo';
+    }
+    else if(this.user['estdo'] === 0){
+      this.estado = 'Inactivo';
+    }
+  }
+
+  ngOnInit() {
+  }
+  ionViewDidEnter(){
+   /*  console.log(this.user.length)
+    this.user = this.service.info;
+    this.userCopy = this.user;
+    console.log(this.user);
+    this.data = this.user; */
   }
   actualizar(){
     const useful = Global.dominio + '/editar-usuario';

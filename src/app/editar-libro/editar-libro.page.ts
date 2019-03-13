@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Global} from '../global';
+import { Global } from '../global';
 import { Router } from '@angular/router';
 import { ParamService } from '../param.service';
 @Component({
@@ -10,9 +10,9 @@ import { ParamService } from '../param.service';
 })
 export class EditarLibroPage implements OnInit {
 
-  constructor(public http:HttpClient,public router : Router, public service : ParamService ) { }
-data = {};
-libro = {};
+  constructor(public http: HttpClient, public router: Router, public service: ParamService) { }
+  data = {};
+  libro = {};
   ngOnInit() {
   }
   ionViewDidEnter() {
@@ -23,9 +23,9 @@ libro = {};
   }
   actualizar() {
     const useful = Global.dominio + '/editar-libro';
-    this.http.post(useful, this.data).subscribe(info =>{
+    this.http.post(useful, this.data).subscribe(info => {
       console.log(useful);
-    }, error =>{
+    }, error => {
       console.log('Error');
     });
     this.router.navigateByUrl('/mostrar-libros');
