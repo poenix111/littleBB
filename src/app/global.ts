@@ -1,3 +1,3 @@
 export const Global = Object.freeze({
-    dominio: 'http://127.0.0.1:5000'
+    dominio: 'https://poenix111.pythonanywhere.com'
 });

@@ -17,7 +17,7 @@ export class MostrarUsuariosPage implements OnInit {
   }
 
   mostrar() {
-    if (this.buscar === '*') {
+    if (this.buscar === '*' || this.buscar === '') {
       const useful = Global.dominio + '/recuperar-usuarios';
 
       this.http.get(useful).subscribe(data => {

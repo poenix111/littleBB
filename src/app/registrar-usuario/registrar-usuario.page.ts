@@ -20,7 +20,7 @@ export class RegistrarUsuarioPage implements OnInit {
   registrarUser() {
 // tslint:disable-next-line: max-line-length
     const useful = Global.dominio + '/registrar-usuario-api?nombre=' + this.nombre + '&usuario=' + this.usuario + '&contra=' + this.contra + '&tipo=' + this.tipo + '&email=' + this.email + '&telefono=' + this.telefono + '&area=' + this.area;
-    if (this.usuario.length < 5) {
+    if (this.usuario.length < 8) {
       this.http.get(useful).subscribe(data =>{
         console.log('NICE');
       }, error =>{

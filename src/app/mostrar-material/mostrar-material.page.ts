@@ -18,7 +18,7 @@ export class MostrarMaterialPage implements OnInit {
   }
 
   mostrar() {
-    if (this.buscar === '*') {
+    if (this.buscar === '*' || this.buscar === '') {
       const useful = Global.dominio + '/recuperar-material/';
       this.http.get(useful).subscribe(data => {
 
