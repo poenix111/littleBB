@@ -11,10 +11,16 @@ from db import DB
 app = Flask(__name__)
 core = CORS(app)
 
-host = 'poenix111.mysql.pythonanywhere-services.com'
+""" host = 'poenix111.mysql.pythonanywhere-services.com'
 user = 'poenix111'
 password = '@ashe123'
 database = 'poenix111$biblioteca'
+ """
+
+host = "localhost"
+password = "ashe123"
+user = "brian"
+database = "biblioteca"
 
 """ conexion = mysql.connector.connect(user='brian',password='ashe123',database='biblioteca')
 cursor = conexion.cursor() """
