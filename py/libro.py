@@ -3,12 +3,14 @@ class Libro:
         self.conexion = db.conexion
         self.cursor = db.cursor
 
-    def crear(self, nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion):
+    def crear(self, data):
 
         insertar = (
             'INSERT INTO libro(nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion, existencia, unicos, disponibles) VALUES (%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s)')
 
-        query = (
+        
+
+        """ query = (
             'SELECT * FROM libro WHERE nombre = %s AND autor = %s AND edicion = %s')
         # Para validar que no tenga que solo actualizar la existecia del libro
         self.cursor.execute(query, (nombre, autor, edicion))
@@ -28,7 +30,9 @@ class Libro:
         else:
             self.cursor.execute(
                 insertar, (nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion, '1', '1', '1'))
-            self.conexion.commit()
+            self.conexion.commit() """
+        self.cursor.execute(insertar, (data['nombre'], data['autor'], data['genero'], data['edicion'], data['editorial'], data['idioma'], data['isbn'], data['descripcion'],data['existencia'], data['unicos'], data['disponibles']))
+        self.conexion.commit()
 
     def mostrarAll(self):
         query = ('SELECT * FROM libro')

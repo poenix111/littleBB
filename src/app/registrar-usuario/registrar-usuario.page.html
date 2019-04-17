@@ -2,10 +2,10 @@
 
   <div class="usuario">
 
-    <ion-input [(ngModel)]="nombre" placeholder="Nombre" inputmode="text"></ion-input>
-    <ion-input [(ngModel)]="usuario" placeholder="Usuario" inputmode="numeric" maxlength="7" minlength="6"></ion-input>
+    <ion-input [(ngModel)]="data['nombre']" placeholder="Nombre" inputmode="text"></ion-input>
+    <ion-input [(ngModel)]="data['usuario']" placeholder="Usuario" inputmode="numeric" maxlength="7" minlength="6"></ion-input>
     <div id="contraseña">
-      <ion-input [(ngModel)]="contra" placeholder="Contraseña" type="password" inputmode="password" minlength="5"></ion-input>
+      <ion-input [(ngModel)]="data['contra']" placeholder="Contraseña" type="password" inputmode="password" minlength="5"></ion-input>
       <ion-button shape="round" id="bonton_info">
         <ion-icon name="eye"></ion-icon>
       </ion-button>
@@ -14,16 +14,16 @@
     <div>
       <ion-item class="type">
         <ion-label>Tipo</ion-label>
-        <ion-select [(ngModel)]="tipo" value="estudiante" okText="Okay" cancelText="Dismiss">
+        <ion-select [(ngModel)]="data['tipo']" value="estudiante" okText="Okay" cancelText="Dismiss">
           <ion-select-option value="estudiante">Estudiante</ion-select-option>
           <ion-select-option value="maestro">Maestro</ion-select-option>
           <ion-select-option value="bibliotecario">Bibliotecario</ion-select-option>
         </ion-select>
       </ion-item>
     </div>
-    <ion-input [(ngModel)]="email" placeholder="E-mail" inputmode="email"></ion-input>
-    <ion-input [(ngModel)]="telefono" placeholder="Telefono" type="tel" inputmode="tel"></ion-input>
-    <ion-input [(ngModel)]="area" placeholder="Area" type="text" inputmode="text"></ion-input>
+    <ion-input [(ngModel)]="data['email']" placeholder="E-mail" inputmode="email"></ion-input>
+    <ion-input [(ngModel)]="data['telefono']" placeholder="Telefono" type="tel" inputmode="tel"></ion-input>
+    <ion-input [(ngModel)]="data['area']" placeholder="Area" type="text" inputmode="text"></ion-input>
     <ion-button (click)="registrarUser()" color="success" expand="full">Continuar</ion-button>
   </div>
 

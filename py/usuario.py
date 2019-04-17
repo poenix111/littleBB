@@ -7,7 +7,7 @@ class Usuario:
         self.conexion = db.conexion
         self.cursor = db.cursor
 
-    def crear(self, nombre, usuario, contra, tipo, email, telefono, area):
+    def crear(self, data):
         insertar = ('INSERT INTO usuario(id_usuario, nombre, tipo, email, telefono, pass, estado, fechaRegistro, penalizaciones, area) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)')
         """   h = hashlib.new('sha256', bytes(contra, 'utf-8'))
         h = h.hexdigest() """
@@ -15,15 +15,15 @@ class Usuario:
         estado = True
         penalizaciones = 0
         tipoReal = type(int)
-        if(tipo == 'bibliotecario' or tipo == ''):
+        if(data["tipo"] == 'bibliotecario' or data["tipo"] == ''):
             tipoReal = 3
-        elif(tipo == "maestro"):
+        elif(data["tipo"] == "maestro"):
             tipoReal = 2
-        elif(tipo == "estudiante"):
+        elif(data["tipo"] == "estudiante"):
             tipoReal = 1
 
-        self.cursor.execute(insertar, (usuario, nombre, tipoReal, email,
-                                       telefono, contra, estado, date, penalizaciones, area))
+        self.cursor.execute(insertar, (data["usuario"], data["nombre"], tipoReal, data["email"],
+                                       data["telefono"], data["contra"], estado, date, penalizaciones, data["area"]))
         self.conexion.commit()
 
     def login(self, usuario, contra):

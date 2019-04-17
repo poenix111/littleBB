@@ -22,12 +22,6 @@ password = "ashe123"
 user = "brian"
 database = "biblioteca"
 
-""" conexion = mysql.connector.connect(user='brian',password='ashe123',database='biblioteca')
-cursor = conexion.cursor() """
-
-
-
-
 db = DB(host, user, password, database)
 @app.before_request
 def before_request_callback():  
@@ -39,49 +33,47 @@ def after_request_callback(response):
     return response
 
 
-@app.route('/registrar-usuario-api', methods = ['GET'])
+@app.route('/registrar-usuario', methods = ['POST'])
 @cross_origin()
 def registrarUsuario():
     user = Usuario(db)
-    nombre = request.args.get('nombre')
-    usuario = request.args.get('usuario')
-    contra = request.args.get('contra')
-    tipo = request.args.get('tipo')
-    email = request.args.get('email')
-    telefono = request.args.get('telefono')
-    area = request.args.get('area')
-    user.crear(nombre,usuario,contra, tipo, email, telefono, area)
+    data = request.get_json(force = True)
+    user.crear(data)
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
 
 
 
-@app.route("/registrar-libro", methods = ['GET'])
+@app.route("/registrar-libro", methods = ['POST'])
 @cross_origin()
 def registrarLibro():
     libro = Libro(db)
-    nombre = request.args.get('nombre')
+    """ nombre = request.args.get('nombre')
     autor = request.args.get('autor')
     genero = request.args.get('genero')
     edicion = request.args.get('edicion')
     editorial = request.args.get('editorial')
     idioma = request.args.get('idioma')
     isbn = request.args.get('isbn')
-    descripcion = request.args.get('descripcion')
-    libro.crear(nombre,autor,genero,edicion,editorial,idioma,isbn,descripcion)
+    descripcion = request.args.get('descripcion') """
+
+    data = request.get_json(force=True)
+    libro.crear(data)
+    print(data)
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
 
-@app.route("/registrar-material", methods = ['GET'])
+@app.route("/registrar-material", methods = ['POST'])
 def registrarMaterial():
     material = Material(db)
-    tipo = request.args.get('tipo')
+    """ tipo = request.args.get('tipo')
     marca = request.args.get('marca')
     descripcion = request.args.get('descripcion')
-    numSerie = request.args.get('numSerie')
-    material.crear(tipo, marca, descripcion, numSerie)
+    numSerie = request.args.get('numSerie') """
+    data = request.get_json(force=True)
+    material.crear(data)
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta

@@ -3,19 +3,19 @@ class Material:
         self.conexion = db.conexion
         self.cursor = db.cursor
 
-    def crear(self, tipo, marca, descripcion, numSerie):
+    def crear(self, data):
         insert = (
             'INSERT INTO material(tipo, marca, descripcion, numSerie) VALUES (%s,%s,%s,%s)')
         tipoReal = type(int)
 
-        if(tipo == 'laptop' or tipo == ''):
+        if(data['tipo'] == 'laptop' or data['tipo'] == ''):
             tipoReal = 1
-        elif(tipo == 'bocina'):
+        elif(data['tipo'] == 'bocina'):
             tipoReal = 2
-        elif(tipo == 'proyector'):
+        elif(data['tipo'] == 'proyector'):
             tipoReal = 3
 
-        self.cursor.execute(insert, (tipoReal, marca, descripcion, numSerie))
+        self.cursor.execute(insert, (tipoReal, data['marca'], data['descripcion'], data['numSerie']))
         self.conexion.commit()
 
     def mostrarAll(self):

@@ -1,35 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Global } from '../global';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registrar-libro',
   templateUrl: './registrar-libro.page.html',
-  styleUrls: ['./registrar-libro.page.scss'],
+  styleUrls: ['./registrar-libro.page.scss']
 })
 export class RegistrarLibroPage implements OnInit {
-
-  nombreLibro = '';
+  /* nombreLibro = '';
   nombreAutor = '';
   genero = '';
   edicion = '';
   editorial = '';
   idioma = '';
   isbn = '';
-  descripcion = '';
+  descripcion = ''; */
 
-  constructor(public http: HttpClient) { }
+  data = {};
+  constructor(public http: HttpClient, public router: Router) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
   registrarLibro() {
-// tslint:disable-next-line: max-line-length
-    const useful = Global.dominio + '/registrar-libro?nombre=' + this.nombreLibro + '&autor=' + this.nombreAutor + '&genero=' + this.genero + '&edicion=' + this.edicion + '&editorial=' + this.editorial + '&idioma=' + this.idioma + '&isbn=' + this.isbn + '&descripcion=' + this.descripcion;
+    // tslint:disable-next-line: max-line-length
+    /* const useful = Global.dominio + '/registrar-libro?nombre=' + this.nombreLibro + '&autor=' + this.nombreAutor + '&genero=' + this.genero + '&edicion=' + this.edicion + '&editorial=' + this.editorial + '&idioma=' + this.idioma + '&isbn=' + this.isbn + '&descripcion=' + this.descripcion;
     this.http.get(useful).subscribe(data => {
       console.log('NICE');
     }, error => {
       console.log('ERROR');
     });
-    console.log(useful);
+    console.log(useful); */
+    const useful = Global.dominio + '/registrar-libro';
+    this.http.post(useful, this.data).subscribe(
+      info => {
+        console.log(useful);
+      },
+      error => {
+        console.log('ERROR');
+      }
+    );
+
+    this.router.navigateByUrl('mostrar-libros');
   }
 }
