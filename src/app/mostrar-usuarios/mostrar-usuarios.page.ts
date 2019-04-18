@@ -26,6 +26,7 @@ export class MostrarUsuariosPage implements OnInit {
           this.usuarios.push(data[u]);
         }
       }, error => {
+        console.log('Error');
       });
 
     }

@@ -27,15 +27,24 @@ class Usuario:
         self.conexion.commit()
 
     def login(self, usuario, contra):
-        select = ('SELECT * FROM usuario id_usuario = %s AND pass = %s')
+        select = ('SELECT * FROM usuario WHERE id_usuario = %s AND pass = %s')
         h = hashlib.new('sha256', bytes(contra, 'utf-8'))
         h = h.hexdigest()
-        self.cursor.execute(select, (usuario, h))
+        self.cursor.execute(select, (usuario, contra))
         resultado = self.cursor.fetchall()
-        if resultado:
-            return True
-        else:
-            return False
+        print(resultado)
+        return {
+            'id_usuario': resultado[0][0],
+            'nombre': resultado[0][1],
+            'tipo': resultado[0][2],
+            'email': resultado[0][3],
+            'telefono': resultado[0][4],
+            'estado': resultado[0][6],
+            'fecha': str(resultado[0][7]),
+            'penalizaciones': resultado[0][8],
+            'area': resultado[0][9]
+
+        }
 
     def actualizar(self, usuario):
 
@@ -50,9 +59,8 @@ class Usuario:
             tipoReal = 1
         print(usuario)
         self.cursor.execute(update, (usuario['nombre'], tipoReal, usuario['email'],
-                                     usuario['telefono'], usuario['pass'], usuario['penalizaciones'], usuario['area'],usuario['estado'], usuario['id_usuario']))
+                                     usuario['telefono'], usuario['pass'], usuario['penalizaciones'], usuario['area'], usuario['estado'], usuario['id_usuario']))
         self.conexion.commit()
-         
 
     def mostrarAll(self):
         query = ('SELECT * FROM usuario')

@@ -125,4 +125,14 @@ def editarMaterial():
     respuesta = make_response("Hello World")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
+
+
+@app.route('/login', methods = ['POST'])
+def login():
+    usuario = Usuario(db)
+    data = request.get_json(force = True)
+    return jsonify(usuario.login(data['usuario'], data['contra']))
+
+    
+
 app.run(debug=True)
