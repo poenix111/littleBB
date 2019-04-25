@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Global } from '../global';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { ParamService } from '../param.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
   data = {};
-  constructor(public http: HttpClient, public router: Router) {}
+  constructor(public http: HttpClient, public router: Router, public service: ParamService) {}
 
   ngOnInit() {}
 
@@ -18,8 +19,9 @@ export class LoginPage implements OnInit {
     const useful = Global.dominio + '/login';
     this.http.post(useful, this.data).subscribe(
       info => {
-        console.log(info);
         this.router.navigateByUrl('/');
+        this.service.user = info;
+        console.log(this.service.user);
 
       },
       error => {

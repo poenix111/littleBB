@@ -8,8 +8,6 @@ class Libro:
         insertar = (
             'INSERT INTO libro(nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion, existencia, unicos, disponibles) VALUES (%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s)')
 
-        
-
         """ query = (
             'SELECT * FROM libro WHERE nombre = %s AND autor = %s AND edicion = %s')
         # Para validar que no tenga que solo actualizar la existecia del libro
@@ -31,7 +29,8 @@ class Libro:
             self.cursor.execute(
                 insertar, (nombre, autor, genero, edicion, editorial, idioma, isbn, descripcion, '1', '1', '1'))
             self.conexion.commit() """
-        self.cursor.execute(insertar, (data['nombre'], data['autor'], data['genero'], data['edicion'], data['editorial'], data['idioma'], data['isbn'], data['descripcion'],data['existencia'], data['unicos'], data['disponibles']))
+        self.cursor.execute(insertar, (data['nombre'], data['autor'], data['genero'], data['edicion'], data['editorial'],
+                                       data['idioma'], data['isbn'], data['descripcion'], data['existencia'], data['unicos'], data['disponibles']))
         self.conexion.commit()
 
     def mostrarAll(self):
@@ -56,6 +55,7 @@ class Libro:
                 "unicos": r[10],
                 "disponibles": r[11]
             }
+
             resultados.append(libro)
         return resultados
 
@@ -64,3 +64,28 @@ class Libro:
         self.cursor.execute(update, (libro['nombre'], libro['autor'], libro['genero'], libro['edicion'], libro['editorial'], libro['idioma'],
                                      libro['isbn'], libro['descripcion'], libro['existencia'], libro['unicos'], libro['disponibles'], libro['id_libro']))
         self.conexion.commit()
+
+    def exists(self, isbn):
+        show = ('SELECT * FROM libro WHERE isbn = %s')
+
+        self.cursor.execute(show, (isbn,))
+
+        r = self.cursor.fetchall()
+        if (r):
+            r = r[0]
+            return {
+                "id_libro": r[0],
+                "nombre": r[1],
+                "autor": r[2],
+                "genero": r[3],
+                "edicion": r[4],
+                "editorial": r[5],
+                "idioma": r[6],
+                "isbn": r[7],
+                "descripcion": r[8],
+                "existencia": r[9],
+                "unicos": r[10],
+                "disponibles": r[11]
+            }
+        else:
+            return 'False'

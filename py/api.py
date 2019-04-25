@@ -39,7 +39,7 @@ def registrarUsuario():
     user = Usuario(db)
     data = request.get_json(force = True)
     user.crear(data)
-    respuesta = make_response("Hello World")
+    respuesta = make_response("Registro exitoso")
     respuesta.headers.add("Access-Control-Allow-Origin","*")
     return respuesta
 
@@ -134,5 +134,26 @@ def login():
     return jsonify(usuario.login(data['usuario'], data['contra']))
 
     
+@app.route('/exists', methods = ['POST'])
+def exists():
+    usuario = Usuario(db)
+    data = request.get_json(force = True)
+    """   data = {}
+    data['usuario'] = request.args.get('usuario') """
+    if(usuario.exists(data['usuario'])):
+        return 'True'
+    else:
+        return 'False'
 
+
+@app.route('/book-exists', methods = ['POST'])
+
+def bookExists():
+    libro = Libro(db)
+    data = request.get_json(force = True)
+    if(libro.exists(data['isbn']) != 'False'):
+        return jsonify(libro.exists(data['isbn']))
+    else:
+        return 'False'
+    
 app.run(debug=True)

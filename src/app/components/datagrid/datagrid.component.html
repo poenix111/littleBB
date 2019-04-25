@@ -8,6 +8,7 @@
       <ion-col>
         Autor
       </ion-col>
+
       <ion-col>
         Fecha de prestamo
       </ion-col>
@@ -23,6 +24,32 @@
       <ion-col>
         Entregar
       </ion-col>
+    </ion-row>
+    <ion-row  *ngFor="let l of libros">
+      <ion-col>
+        {{ l.nombre }}
+      </ion-col>
+
+      <ion-col>
+        {{ l.autor }}
+      </ion-col>
+
+      <ion-col>
+        {{ date }}
+      </ion-col>
+
+      <ion-col>
+        {{ dateNew }}
+      </ion-col>
+
+      <ion-col>
+        {{ l.nombre }}
+      </ion-col>
+
+      <ion-col>
+        {{ l.nombre }}
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 </div>
