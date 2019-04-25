@@ -29,14 +29,23 @@ export class DatagridComponent implements OnInit {
 
   libros =[];
   ngOnInit() {
-    console.log('here');
+   /*  console.log('here');
     for (let i = 0; i < 10; i++) {
       this.libros.push(this.libro);
-    }
+    } */
+
+
   }
 
+  ngAfterViewChecked(): void {
+    //Called after every check of the component's view. Applies to components only.
+    //Add 'implements AfterViewChecked' to the class.
+    this.libros = this.service.libros;
+  }
   actualizar(){
     //this.libros = this.service.libros;
   }
-  
+  trackElement(index: number, element: any) {
+    return element ? element.guid : null
+  }
 }

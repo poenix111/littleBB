@@ -25,7 +25,7 @@
         Entregar
       </ion-col>
     </ion-row>
-    <ion-row  *ngFor="let l of libros">
+    <ion-row  *ngFor="let l of libros; trackBy: trackElement">
       <ion-col>
         {{ l.nombre }}
       </ion-col>

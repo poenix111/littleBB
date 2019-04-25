@@ -64,8 +64,18 @@ class Libro:
         self.cursor.execute(update, (libro['nombre'], libro['autor'], libro['genero'], libro['edicion'], libro['editorial'], libro['idioma'],
                                      libro['isbn'], libro['descripcion'], libro['existencia'], libro['unicos'], libro['disponibles'], libro['id_libro']))
         self.conexion.commit()
-
     def exists(self, isbn):
+        show = ('SELECT * FROM libro WHERE isbn = %s')
+
+        self.cursor.execute(show, (isbn,))
+
+        r = self.cursor.fetchall()
+        print(r);
+        if (r):
+            return 'True'
+        else:
+            return 'False'
+    def JsonExists(self, isbn):
         show = ('SELECT * FROM libro WHERE isbn = %s')
 
         self.cursor.execute(show, (isbn,))
@@ -89,3 +99,6 @@ class Libro:
             }
         else:
             return 'False'
+
+
+    

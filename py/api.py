@@ -147,13 +147,17 @@ def exists():
 
 
 @app.route('/book-exists', methods = ['POST'])
-
 def bookExists():
     libro = Libro(db)
     data = request.get_json(force = True)
     if(libro.exists(data['isbn']) != 'False'):
-        return jsonify(libro.exists(data['isbn']))
+        return jsonify(libro.JsonExists(data['isbn']))
     else:
         return 'False'
     
+@app.route('/book', methods = ['POST'])
+def book():
+    libro = Libro(db)
+    data = request.get_json(force = True)
+    return libro.exists(data['isbn'])
 app.run(debug=True)

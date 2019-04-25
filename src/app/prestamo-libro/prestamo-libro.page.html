@@ -13,7 +13,7 @@
     <div class="libro">
       <p>Código de libro: </p>
       <ion-input (keyup) = 'libro()' [(ngModel)]="data['isbn']"  placeholder="Ingrese..." [ngStyle]="{'color': bookColor ? 'green' : 'red'}"></ion-input>
-      <ion-button  shape="round" id="bonton_info">
+      <ion-button (click)="pushBook()" shape="round" id="bonton_info">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </div>
@@ -23,7 +23,7 @@
       <div class="alinear">
         <ion-checkbox color="light" id="checkbox_extend"></ion-checkbox>
         <p>Extension</p>
-        <ion-button shape="round" id="bonton_info">
+        <ion-button  shape="round" id="bonton_info">
           <ion-icon name="information-circle-outline"></ion-icon>
         </ion-button>
       </div>
@@ -35,7 +35,7 @@
     
     <ion-button color="light" expand="full">Confirmar</ion-button>
 
-    <app-datagrid  devolucion="false"></app-datagrid>
+    <app-datagrid></app-datagrid>
 
     <p>Empleado: Muñoz Marin Brian Alejandro</p>
 
