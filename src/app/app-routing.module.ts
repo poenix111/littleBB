@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'editar-usuarios', loadChildren: './editar-usuarios/editar-usuarios.module#EditarUsuariosPageModule' },
   { path: 'editar-libro', loadChildren: './editar-libro/editar-libro.module#EditarLibroPageModule' },
   { path: 'editar-material', loadChildren: './editar-material/editar-material.module#EditarMaterialPageModule' },
+  { path: 'modal-user', loadChildren: './modal-user/modal-user.module#ModalUserPageModule' },
 ];
 
 @NgModule({

@@ -5,17 +5,22 @@ import { RouterModule } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { MenuComponent } from './menu/menu.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
+import { ModalUserComponent } from './modal-user/modal-user.component';
 
 @NgModule({
   declarations: [
     ToolbarComponent,
     MenuComponent,
     DatagridComponent,
+    ModalUserComponent
+    
   ],
   exports: [
     ToolbarComponent,
     MenuComponent,
     DatagridComponent,
+    ModalUserComponent
+    
   ],
   imports: [
     CommonModule,

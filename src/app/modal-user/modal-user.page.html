@@ -1,0 +1,19 @@
+<title>Usuario</title>
+<ion-card>
+    <ion-card-subtitle>Codigo: {{service.userPrestmamo.id_usuario}}</ion-card-subtitle>
+      <ion-card-title>{{service.userPrestmamo.nombre}}</ion-card-title>
+      <ion-card-content>
+        Fecha: {{service.userPrestmamo.fechaRegistro}} <br>
+        E-Mail {{service.userPrestmamo.email}} <br>
+        Situacion:
+        <a *ngIf="service.userPrestmamo.estado == 1">Activo</a>
+        <a *ngIf="service.userPrestmamo.estado == 0">Bloqueado</a> <br>
+        Penalizaciones {{service.userPrestmamo.penalizaciones}} <br>
+        Telefono: {{service.userPrestmamo.telefono}} <br>
+        Tipo de usuario: 
+        <a *ngIf="service.userPrestmamo.tipo == 1">Estudiante</a>
+        <a *ngIf="service.userPrestmamo.tipo == 2">Maestro</a>
+        <a *ngIf="service.userPrestmamo.tipo == 3">Administrativo</a><br>
+        Area: {{service.userPrestmamo.area}}
+      </ion-card-content>
+</ion-card>

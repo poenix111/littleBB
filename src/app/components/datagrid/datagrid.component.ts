@@ -9,8 +9,6 @@ export class DatagridComponent implements OnInit {
   constructor(public service: ParamService) {}
   @Input() devolucion: boolean;
 
-  date = new Date().toLocaleDateString();
-  dateNew = new Date(Date.now() + (1000 * 60 * 60 * 24) * 3).toLocaleDateString();
   libro = {
     'autor': 'l',
     'descripcion': 'a',
@@ -37,13 +35,15 @@ export class DatagridComponent implements OnInit {
 
   }
 
+// tslint:disable-next-line: use-life-cycle-interface
   ngAfterViewChecked(): void {
-    //Called after every check of the component's view. Applies to components only.
-    //Add 'implements AfterViewChecked' to the class.
+    // Called after every check of the component's view. Applies to components only.
+    // Add 'implements AfterViewChecked' to the class.
     this.libros = this.service.libros;
   }
+  
   actualizar(){
-    //this.libros = this.service.libros;
+    // this.libros = this.service.libros;
   }
   trackElement(index: number, element: any) {
     return element ? element.guid : null

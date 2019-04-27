@@ -85,7 +85,6 @@ class Usuario:
             resultados.append(usuario)
         return resultados
 
-
     def exists(self, usuario):
         select = ('SELECT * FROM usuario WHERE id_usuario = %s')
         self.cursor.execute(select, (usuario,))
@@ -95,3 +94,24 @@ class Usuario:
             return True
         else:
             return False
+
+    def showInfo(self, usuario):
+
+        select = ('SELECT * FROM usuario WHERE id_usuario = %s')
+        self.cursor.execute(select, (usuario,))
+        u = self.cursor.fetchall()
+        print(u)
+        u = u[0]
+        return {
+            "id_usuario": u[0],
+            "nombre": u[1],
+            "tipo": u[2],
+            "email": u[3],
+            "telefono": u[4],
+            "pass": u[5],
+            "estado": u[6],
+            "fechaRegistro": u[7],
+            "penalizaciones": u[8],
+            "area": u[9]
+        }
+

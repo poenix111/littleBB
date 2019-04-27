@@ -100,5 +100,20 @@ class Libro:
         else:
             return 'False'
 
+    """ def hasCopys(self, isbn):
+        query = ('SELECT disponibles FROM libro WHERE = isbn = %s')
+
+        self.cursor.execute(query, (isbn,))
+        result = self.cursor.fetchall()
+        
+        if(result and self.exists(isbn)):
+            result = result[0]
+
+            if(result > 0):
+                return True
+            else:
+                return False
+        else:
+            return False """
 
     
