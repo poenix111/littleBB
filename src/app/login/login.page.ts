@@ -11,7 +11,11 @@ import { ParamService } from '../param.service';
 })
 export class LoginPage implements OnInit {
   data = {};
-  constructor(public http: HttpClient, public router: Router, public service: ParamService) {}
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public service: ParamService
+  ) {}
 
   ngOnInit() {}
 
@@ -19,10 +23,12 @@ export class LoginPage implements OnInit {
     const useful = Global.dominio + '/login';
     this.http.post(useful, this.data).subscribe(
       info => {
-        this.router.navigateByUrl('/');
-        this.service.user = info;
-        console.log(this.service.user);
-
+        if (info != null) {
+          sessionStorage.setItem('usuario', JSON.stringify(info));
+          /* window.location.reload();
+          this.router.navigateByUrl('/'); */
+          window.location.assign('/');
+        }
       },
       error => {
         console.log('ERROR');

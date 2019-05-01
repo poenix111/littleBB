@@ -21,15 +21,19 @@
         Extensión
       </ion-col>
 
-      <ng-container *ngIf="service.prestamo; else elseTemplate1"> </ng-container>
+      <ng-container *ngIf="service.prestamo; else elseTemplate1">
+      </ng-container>
       <ng-template #elseTemplate1>
         <ion-col>
           Entregar
         </ion-col>
       </ng-template>
     </ion-row>
-    <br>
-    <ion-row *ngFor="let l of libros; trackBy: trackElement" style="align-self: center;">
+    <br />
+    <ion-row
+      *ngFor="let l of libros; trackBy: trackElement"
+      style="align-self: center;"
+    >
       <ion-col>
         {{ l.nombre }}
       </ion-col>
@@ -53,13 +57,17 @@
         <ion-col>No</ion-col>
       </ng-template>
 
-      <!-- <ng-container *ngIf="service.prestamo; else elseTemplate3"> </ng-container>
+      <ng-container *ngIf="service.prestamo; else elseTemplate3">
+      </ng-container>
       <ng-template #elseTemplate3>
-        <input value={{l.isbn}} type="hidden">
-        <ion-button  shape="round" style="text-align:center;">
+          <input value="{{ l.isbn }}" type="hidden" />
+
+        <ion-col>
+          <ion-button shape="round" style="top: -30%;">
             <ion-icon name="checkmark"></ion-icon>
           </ion-button>
-      </ng-template> -->
+        </ion-col>
+      </ng-template>
     </ion-row>
   </ion-grid>
 </div>

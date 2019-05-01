@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Global } from '../global';
 import { Router } from '@angular/router';
 @Component({
@@ -31,13 +31,18 @@ export class RegistrarUsuarioPage implements OnInit {
     }
     console.log(useful);
   } */
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'No-Auth': 'True'
+    });
+    
     const useful = Global.dominio + '/registrar-usuario';
-    this.http.post(useful, this.data).subscribe(
+    this.http.post(useful, this.data,{ headers: reqHeader, responseType: 'text' }).subscribe(
       info => {
         console.log(useful);
       },
       error => {
-        console.log('ERROR');
+        console.log(error);
       }
     );
 

@@ -10,7 +10,15 @@ import { MenuController } from '@ionic/angular';
 export class MenuComponent implements OnInit {
   constructor(private router: Router, private menu: MenuController) { }
   title = 'Home';
-  ngOnInit() { }
+  user = {};
+  mostrar = false;
+  ngOnInit() { 
+    this.user = JSON.parse(sessionStorage.getItem('usuario'));
+    if(this.user !== null) {
+      this.mostrar = true;
+    }
+    console.log(this.user);
+  }
   openFirst() {
     this.menu.enable(true, 'first');
     this.menu.open('first');
@@ -60,5 +68,9 @@ export class MenuComponent implements OnInit {
   go_mostrarUsuarios(){
     this.title = 'Mostrar usuarios';
     this.router.navigateByUrl('/mostrar-usuarios');
+  }
+  doLogout() {
+    sessionStorage.clear();
+    window.location.reload();
   }
 }

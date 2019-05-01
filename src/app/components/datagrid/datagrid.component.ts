@@ -7,9 +7,7 @@ import { ParamService } from 'src/app/param.service';
 })
 export class DatagridComponent implements OnInit {
   constructor(public service: ParamService) {}
-  @Input() devolucion: boolean;
-
-  libro = {
+ /*  libro = {
     'autor': 'l',
     'descripcion': 'a',
     'disponibles': 20,
@@ -23,9 +21,9 @@ export class DatagridComponent implements OnInit {
     'nombre': 'loco',
     'unicos': 20
   };
+ */
 
-
-  libros =[];
+  libros = [];
   ngOnInit() {
    /*  console.log('here');
     for (let i = 0; i < 10; i++) {
@@ -41,11 +39,10 @@ export class DatagridComponent implements OnInit {
     // Add 'implements AfterViewChecked' to the class.
     this.libros = this.service.libros;
   }
-  
   actualizar(){
     // this.libros = this.service.libros;
   }
   trackElement(index: number, element: any) {
-    return element ? element.guid : null
+    return element ? element.guid : null;
   }
 }

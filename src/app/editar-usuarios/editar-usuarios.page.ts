@@ -31,7 +31,7 @@ export class EditarUsuariosPage implements OnInit {
     this.userCopy = this.user;
     console.log(this.user);
     this.data = this.user;
-
+    this.user['pass'] = '';
     if(this.user['tipo'] === 1) {
       this.tipoReal = 'Estudiante';
     }

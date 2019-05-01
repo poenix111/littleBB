@@ -51,3 +51,22 @@ class Material:
         print(material)
         self.cursor.execute(update, (material['tipo'], material['marca'], material['descripcion'], material['numSerie'], material['id_material']))
         self.conexion.commit()
+
+    def exists(self, numSerie):
+        show = ('SELECT * FROM material WHERE numSerie = %s')
+
+        self.cursor.execute(show, (numSerie,))
+
+        r = self.cursor.fetchall()
+        print(r)
+        if (r):
+            return True
+        else:
+            return False
+    def deleteMaterial(self, numSerie):
+        if(self.exists(numSerie)):
+            delete = ('DELETE FROM material WHERE numSerie = %s')
+            self.cursor.execute(delete, (numSerie,))
+            self.conexion.commit()
+
+        

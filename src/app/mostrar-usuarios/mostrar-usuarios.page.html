@@ -4,10 +4,13 @@
     <ion-input [(ngModel)]="buscar"></ion-input>
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
-  <ion-card *ngFor="let u of usuarios" (click)="presentModal(u)">
+  <ion-card *ngFor="let u of usuarios">
     <ion-card-subtitle>Codigo: {{u.id_usuario}}</ion-card-subtitle>
       <ion-card-title>{{u.nombre}}</ion-card-title>
       <ion-card-content>
+        <ion-button *ngIf="show && user['tipo']  >  2" (click)="presentModal(u)"> Editar</ion-button>
+        <ion-button *ngIf="show && user['tipo']  >  2" (click)="borrar(u)"> Borrar</ion-button>
+        <br [hidden]="!show">
         Fecha: {{u.fechaRegistro}} <br>
         E-Mail {{u.email}} <br>
         Situacion:
@@ -21,5 +24,7 @@
         <a *ngIf="u.tipo == 3">Administrativo</a><br>
         Area: {{u.area}}
       </ion-card-content>
+
+    
   </ion-card>
 </ion-content>

@@ -100,20 +100,55 @@ class Libro:
         else:
             return 'False'
 
-    """ def hasCopys(self, isbn):
-        query = ('SELECT disponibles FROM libro WHERE = isbn = %s')
+    def hasCopys(self, isbn):
+        query = ('SELECT disponibles FROM libro WHERE isbn = %s')
 
         self.cursor.execute(query, (isbn,))
         result = self.cursor.fetchall()
         
         if(result and self.exists(isbn)):
             result = result[0]
-
-            if(result > 0):
+            print(result[0])
+            if(result[0] > 0):
                 return True
             else:
                 return False
         else:
-            return False """
+            return False
+
+    def removeCopy(self, isbn):
+        if(self.hasCopys(isbn)):
+            disponibles = ('SELECT disponibles FROM libro WHERE isbn = %s')
+            self.cursor.execute(disponibles, (isbn,))
+            result = self.cursor.fetchall()
+            copys = result[0][0]
+            copys = copys - 1
+            query = ('UPDATE libro SET disponibles = %s WHERE isbn = %s')
+            self.cursor.execute(query, (copys,isbn))
+            self.conexion.commit()
+            return str(copys)
+        else:
+            return False
+
+    def deleteCopy(self, isbn):
+        if(self.exists(isbn)):
+            delete = ('DELETE FROM libro WHERE isbn = %s')
+            self.cursor.execute(delete, (isbn,))
+            self.conexion.commit()
+        else:
+            return str(True)
+    def turnIntoUnic(self,isbn):
+        self.removeCopy(isbn)
+
+        update = ('UPDATE libro SET unicos = %s WHERE isbn = %s')
+
+        query = ('SELECT unicos FROM libro WHERE isbn = %s')
+        self.cursor.execute(query, (isbn,))
+        result = self.cursor.fetchall()
+        unicos = result[0][0]
+        unicos = unicos + 1
+        self.cursor.execute(update, (unicos, isbn))
+        self.conexion.commit()
+        return str(unicos)
 
     

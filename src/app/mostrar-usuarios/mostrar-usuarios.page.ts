@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Global } from '../global';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {ParamService} from '../param.service'
+import {ParamService} from '../param.service';
+
 @Component({
   selector: 'app-mostrar-usuarios',
   templateUrl: './mostrar-usuarios.page.html',
@@ -11,9 +12,14 @@ import {ParamService} from '../param.service'
 export class MostrarUsuariosPage implements OnInit {
   buscar = '';
   usuarios = []
+  user = {};
+  show = false;
   constructor(public http: HttpClient, public router:Router, public service:ParamService) { }
-
   ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('usuario'));
+    if(this.user !== null) {
+      this.show = true;
+    }
   }
 
   mostrar() {
@@ -34,6 +40,22 @@ export class MostrarUsuariosPage implements OnInit {
   presentModal(user) {
     this.router.navigateByUrl('/editar-usuarios');
     this.service.info = user;
+  }
+
+  borrar(user) {
+    const useful = Global.dominio + '/delete-user';
+    this.http.post(useful, JSON.stringify(user), { headers: this.service.reqHeader, responseType: 'text' }).subscribe(
+      info => {
+          console.log(info);
+          if(info === 'Error'){
+            this.service.presentAlert('Error al borrar el usuario', 'El usuario tiene prestamos pendites, por lo tanto no se puede borrar');
+          }
+
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 }

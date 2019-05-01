@@ -21,7 +21,7 @@ export class PrestamoLibroPage implements OnInit {
   data = {};
   ngOnInit() {
     this.service.libro = true;
-    this.service.prestamo = true;
+    this.service.prestamo = false;
     this.extension = false;
   }
 
@@ -161,8 +161,6 @@ export class PrestamoLibroPage implements OnInit {
       .subscribe(
         info => {
           console.log(info);
-
-        
         },
         error => {
           console.log('ERROR');

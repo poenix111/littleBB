@@ -39,7 +39,7 @@ def registrarUsuario():
     user = Usuario(db)
     data = request.get_json(force=True)
     user.crear(data)
-    respuesta = make_response("Registro exitoso")
+    respuesta = make_response("Registro exitoso", 200)
     respuesta.headers.add("Access-Control-Allow-Origin", "*")
     return respuesta
 
@@ -185,11 +185,59 @@ def nextValue():
 
 @app.route('/prestamo-libro', methods=['POST'])
 def prestamoLibro():
-        prestamo = Prestamo(db)
-        data = request.get_json(force=True)
-        prestamo.crear(data)
-        respuesta = make_response("Prestamo Creado")
+    prestamo = Prestamo(db)
+    data = request.get_json(force=True)
+    prestamo.crear(data)
+    respuesta = make_response("Prestamo Creado")
+    respuesta.headers.add("Access-Control-Allow-Origin", "*")
+    return respuesta
+
+
+@app.route('/has-copy', methods=['POST'])
+def hasCopy():
+    libro = Libro(db)
+    data = request.get_json(force=True)
+    isbn = data['isbn']
+    return str(libro.hasCopys(isbn))
+
+
+@app.route('/remove-copy', methods=['POST'])
+def removeCopy():
+    libro = Libro(db)
+    data = request.get_json(force=True)
+    isbn = data['isbn']
+    return str(libro.removeCopy(isbn))
+
+
+@app.route('/turn-unic', methods=['POST'])
+def turnUnic():
+    libro = Libro(db)
+    data = request.get_json(force=True)
+    isbn = data['isbn']
+    return str(libro.turnIntoUnic(isbn))
+
+
+@app.route('/penalizar', methods=['POST'])
+def penalizar():
+    usuario = Usuario(db)
+    data = request.get_json(force=True)
+    id_user = data['usuario']
+    return usuario.penalizar(id_user)
+
+
+@app.route('/delete-user', methods=['POST'])
+def deleteUser():
+    user = Usuario(db)
+    data = request.get_json(force=True)
+    id_user = data['id_usuario']
+    if(user.borrarUser(id_user)):
+        respuesta = make_response("Borrado exitoso")
         respuesta.headers.add("Access-Control-Allow-Origin", "*")
         return respuesta
+    else:
+        respuesta = make_response("Error")
+        respuesta.headers.add("Access-Control-Allow-Origin", "*")
+        return respuesta
+
 
 app.run(debug=True)
