@@ -16,11 +16,13 @@ export class EditarLibroPage implements OnInit {
   ngOnInit() {
   }
   ionViewDidEnter() {
-    console.log(this.libro)
-    this.libro = this.service.info;
-    console.log(this.libro);
-    this.data = this.libro;
-    this.service.backToHome();
+    if (!this.service.backToHome()) {
+      console.log(this.libro)
+      this.libro = this.service.info;
+      console.log(this.libro);
+      this.data = this.libro;
+      this.service.backToHome();
+    }
   }
   actualizar() {
     const useful = Global.dominio + '/editar-libro';

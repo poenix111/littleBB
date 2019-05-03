@@ -26,19 +26,15 @@
         </ion-button>
       </div>
     </div>
+    <p>Empleado: {{usuario.nombre}}</p>
 
-
-    <app-datagrid [info] = "libros"></app-datagrid>
-
-    <p>Empleado: Muñoz Marin Brian Alejandro</p>
-
-    <p>Codigo: </p>
+    <p>Codigo:{{usuario.id_usuario}} </p>
 
     <ion-button (click)="confirmar()" color="success" expand="full">Generar tickect</ion-button>
+    <br>
+    <app-datagrid [info] = "libros" class = "datagrid" [mostrar] = 'true'></app-datagrid>
 
+ </ion-content>
 
-
-
-  </ion-content>
-
+ 
 </ion-content>

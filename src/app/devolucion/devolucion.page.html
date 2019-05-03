@@ -7,11 +7,12 @@
       <ion-button (click)="showLend()">Buscar</ion-button>
   </ion-item>
 
-  <p>Nombre del empleado: </p>
+  <p>Nombre del empleado:{{user.nombre}} </p>
 
   <!-- Aqui comienza el datagrid -->
-  <app-datagrid [info] = "libros"></app-datagrid>
 
-  <ion-button color="danger">Libro dañado</ion-button>
+</ion-content>
 
+<ion-content class = "datagrid">
+  <app-datagrid [info] = "libros" [mostrar] = "false"></app-datagrid>
 </ion-content>

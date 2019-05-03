@@ -21,7 +21,7 @@
         Extensión
       </ion-col>
 
-      <ng-container *ngIf="service.prestamo; else elseTemplate1">
+      <ng-container *ngIf="mostrar; else elseTemplate1">
       </ng-container>
       <ng-template #elseTemplate1>
         <ion-col>
@@ -58,11 +58,11 @@
         <ion-col>No</ion-col>
       </ng-template>
 
-      <ng-container *ngIf="entregar; else elseTemplate3">
+      <ng-container *ngIf="mostrar; else elseTemplate3">
       </ng-container>
       <ng-template #elseTemplate3>
         <ion-col>
-          <ion-button shape="round" style="top: -30% !important;">
+          <ion-button (click)="returnBook(l)" shape="round" style="top: -30% !important;">
             <ion-icon name="checkmark"></ion-icon>
           </ion-button>
         </ion-col>

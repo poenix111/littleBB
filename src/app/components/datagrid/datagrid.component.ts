@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 import { ParamService } from 'src/app/param.service';
+import { Global } from 'src/app/global';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-datagrid',
   templateUrl: './datagrid.component.html',
@@ -7,30 +9,13 @@ import { ParamService } from 'src/app/param.service';
 })
 export class DatagridComponent implements OnInit {
   @Input() info: any;
+  @Input() mostrar: boolean;
   libros = [];
-  constructor(public service: ParamService) {}
- /*  libro = {
-    'autor': 'l',
-    'descripcion': 'a',
-    'disponibles': 20,
-    'edicion': 1,
-    'editorial': 'l',
-    'existencia': 20,
-    'genero': 'l',
-    'id_libro': 6,
-    'idioma': 'l',
-    'isbn': '12',
-    'nombre': 'loco',
-    'unicos': 20
-  };
- */
-
+  constructor(public service: ParamService, public http: HttpClient) {}
   ngOnInit() {
-   /*  console.log('here');
-    for (let i = 0; i < 10; i++) {
-      this.libros.push(this.libro);
-    } */
-    this.service.backToHome();
+    if (!this.service.backToHome()) {
+      console.log(this.mostrar);
+    }
   }
 
 // tslint:disable-next-line: use-life-cycle-interface
@@ -40,9 +25,25 @@ export class DatagridComponent implements OnInit {
     //this.libros = newLibros;
     console.log('new libros: ' + newLibros); */
     this.libros = this.info;
-  
+    this.service.libros = this.info;
   }
   trackElement(index: number, element: any) {
     return element ? element.guid : null;
+  }
+
+   returnBook(libro) {
+    const useful = Global.dominio + '/return-book';
+    libro['folio'] = this.service.folio;
+    this.http.post(useful, libro, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
+      console.log(info);
+      this.libros.splice(this.libros.indexOf(libro), 1);
+      console.log(this.libros);
+      if (info === 'Usuario penalizado') {
+         /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
+      }
+    }, error =>{
+      console.log('ERROR');
+    });
+
   }
 }

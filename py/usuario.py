@@ -149,3 +149,12 @@ class Usuario:
             return False
             
        
+    def changeStatus(self, usuario):
+       user = self.showInfo(usuario)
+
+       update = ('UPDATE usuario SET estado = %s')
+
+       if(user['penalizaciones'] == 5):
+           self.cursor.execute(update, (False, ))
+           self.conexion.commit()
+       

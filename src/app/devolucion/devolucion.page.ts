@@ -13,28 +13,25 @@ export class DevolucionPage implements OnInit {
   constructor(public http: HttpClient, public service: ParamService) { }
   data = {};
   libros = [];
+  user = {};
   ngOnInit() {
+    if(!this.service.backToHome()) {
+      this.user = JSON.parse(sessionStorage.getItem('usuario'));
+
+    }
   }
   showLend() {
     const useful = Global.dominio + '/show-lend';
     this.http.post(useful, this.data, {headers : this.service.reqHeader, responseType: 'text'}).subscribe( info => {
-      this.service.libros = JSON.parse(info);
-      this.libros  = JSON.parse(info);
-    }, error =>{
-      console.log('ERROR');
-    });
-
-  }
-
-  returnBook(libro) {
-    const useful = Global.dominio + '/return-book';
-    libro['folio'] = this.data['folio'];
-    this.http.post(useful, libro, {headers : this.service.reqHeader, responseType: 'text'}).subscribe( info => {
+      /* this.service.libros = JSON.parse(info); */
       console.log(info);
+      this.libros  = JSON.parse(info);
+      this.service.folio = this.data['folio'];
 
     }, error =>{
       console.log('ERROR');
     });
 
   }
+
 }

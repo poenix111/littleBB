@@ -14,7 +14,7 @@
       <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_registroMaterial()">Registrar material</ion-item>
       <ion-item (click)="go_mostrarLibros()">Mostrar Libros</ion-item>
       <ion-item (click)="go_mostrarMaterial()">Mostrar Material</ion-item>
-      <ion-item (click)="go_mostrarUsuarios()">Mostrar usuarios</ion-item>
+      <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_mostrarUsuarios()">Mostrar usuarios</ion-item>
 
 
     </ion-list>

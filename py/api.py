@@ -257,4 +257,12 @@ def showLend():
         data = request.get_json(force = True)
         folio = data['folio']
         return jsonify(prestamo.showLend(folio))
+
+@app.route('/libros-en-posesion', methods = ['POST'])
+def librosEnPosesion():
+        prestamo = Prestamo(db)
+        data = request.get_json(force = True)
+        usuario = data['usuario']
+        return jsonify(prestamo.showPrestados(usuario))
+
 app.run(debug=True)

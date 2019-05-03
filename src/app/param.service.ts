@@ -12,8 +12,9 @@ export class ParamService {
   prestamo: boolean;
   libro: boolean;
   libros = [];
-  info:any[];
+  info: any[];
   user = {};
+  folio: number;
   reqHeader = new HttpHeaders({
     'Content-Type': 'application/json',
     'No-Auth': 'True'

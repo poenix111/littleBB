@@ -2,23 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { Global } from '../global';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import {ParamService} from '../param.service';
+import { ParamService } from '../param.service';
 
 @Component({
   selector: 'app-mostrar-usuarios',
   templateUrl: './mostrar-usuarios.page.html',
-  styleUrls: ['./mostrar-usuarios.page.scss'],
+  styleUrls: ['./mostrar-usuarios.page.scss']
 })
 export class MostrarUsuariosPage implements OnInit {
   buscar = '';
-  usuarios = []
+  usuarios = [];
   user = {};
-  show = false;
-  constructor(public http: HttpClient, public router:Router, public service:ParamService) { }
+  show: boolean;
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public service: ParamService
+  ) {}
   ngOnInit() {
-    this.user = JSON.parse(sessionStorage.getItem('usuario'));
-    if(this.user !== null) {
-      this.show = true;
+    if (!this.service.backToHome()) {
+      this.user = JSON.parse(sessionStorage.getItem('usuario'));
+      if (this.user !== null) {
+        this.show = true;
+      }
     }
   }
 
@@ -26,15 +32,17 @@ export class MostrarUsuariosPage implements OnInit {
     if (this.buscar === '*' || this.buscar === '') {
       const useful = Global.dominio + '/recuperar-usuarios';
 
-      this.http.get(useful).subscribe(data => {
-        // tslint:disable-next-line: forin
-        for (const u in data) {
-          this.usuarios.push(data[u]);
+      this.http.get(useful).subscribe(
+        data => {
+          // tslint:disable-next-line: forin
+          for (const u in data) {
+            this.usuarios.push(data[u]);
+          }
+        },
+        error => {
+          console.log('Error');
         }
-      }, error => {
-        console.log('Error');
-      });
-
+      );
     }
   }
   presentModal(user) {
@@ -44,18 +52,25 @@ export class MostrarUsuariosPage implements OnInit {
 
   borrar(user) {
     const useful = Global.dominio + '/delete-user';
-    this.http.post(useful, JSON.stringify(user), { headers: this.service.reqHeader, responseType: 'text' }).subscribe(
-      info => {
+    this.http
+      .post(useful, JSON.stringify(user), {
+        headers: this.service.reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
           console.log(info);
-          if(info === 'Error'){
-            this.service.presentAlert('Error al borrar el usuario', 'El usuario tiene prestamos pendites, por lo tanto no se puede borrar');
+          if (info === 'Error') {
+            this.service.presentAlert(
+              'Error al borrar el usuario',
+              'El usuario tiene prestamos pendites, por lo tanto no se puede borrar'
+            );
           }
-
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
-
+  
 }
