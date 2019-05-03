@@ -51,17 +51,14 @@ export class EditarUsuariosPage implements OnInit {
   }
 
   ngOnInit() {
+    this.service.backToHome();
+
   }
   ionViewDidEnter(){
-   /*  console.log(this.user.length)
-    this.user = this.service.info;
-    this.userCopy = this.user;
-    console.log(this.user);
-    this.data = this.user; */
   }
   actualizar(){
     const useful = Global.dominio + '/editar-usuario';
-    this.http.post(useful, this.data).subscribe( info => {
+    this.http.post(useful, this.data, {headers : this.service.reqHeader, responseType: 'text'}).subscribe( info => {
       console.log(useful);
     }, error =>{
       console.log('ERROR');

@@ -30,4 +30,13 @@ export class ParamService {
     await alert.present();
   }
 
+  backToHome(){
+    if (sessionStorage.getItem('usuario') === null || JSON.parse(sessionStorage.getItem('usuario'))['tipo'] < 3) {
+      window.location.replace('/');
+      return true;
+    }
+
+    return false;
+
+  }
 }

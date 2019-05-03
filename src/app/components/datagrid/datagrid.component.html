@@ -30,6 +30,7 @@
       </ng-template>
     </ion-row>
     <br />
+    
     <ion-row
       *ngFor="let l of libros; trackBy: trackElement"
       style="align-self: center;"
@@ -57,13 +58,11 @@
         <ion-col>No</ion-col>
       </ng-template>
 
-      <ng-container *ngIf="service.prestamo; else elseTemplate3">
+      <ng-container *ngIf="entregar; else elseTemplate3">
       </ng-container>
       <ng-template #elseTemplate3>
-          <input value="{{ l.isbn }}" type="hidden" />
-
         <ion-col>
-          <ion-button shape="round" style="top: -30%;">
+          <ion-button shape="round" style="top: -30% !important;">
             <ion-icon name="checkmark"></ion-icon>
           </ion-button>
         </ion-col>

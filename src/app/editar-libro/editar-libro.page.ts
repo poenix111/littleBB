@@ -20,10 +20,11 @@ export class EditarLibroPage implements OnInit {
     this.libro = this.service.info;
     console.log(this.libro);
     this.data = this.libro;
+    this.service.backToHome();
   }
   actualizar() {
     const useful = Global.dominio + '/editar-libro';
-    this.http.post(useful, this.data).subscribe(info => {
+    this.http.post(useful, this.data, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(info => {
       console.log(useful);
     }, error => {
       console.log('Error');

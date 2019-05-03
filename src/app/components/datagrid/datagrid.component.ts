@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Injectable } from '@angular/core';
+import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 import { ParamService } from 'src/app/param.service';
 @Component({
   selector: 'app-datagrid',
@@ -6,6 +6,8 @@ import { ParamService } from 'src/app/param.service';
   styleUrls: ['./datagrid.component.scss']
 })
 export class DatagridComponent implements OnInit {
+  @Input() info: any;
+  libros = [];
   constructor(public service: ParamService) {}
  /*  libro = {
     'autor': 'l',
@@ -23,24 +25,22 @@ export class DatagridComponent implements OnInit {
   };
  */
 
-  libros = [];
   ngOnInit() {
    /*  console.log('here');
     for (let i = 0; i < 10; i++) {
       this.libros.push(this.libro);
     } */
-
-
+    this.service.backToHome();
   }
 
 // tslint:disable-next-line: use-life-cycle-interface
-  ngAfterViewChecked(): void {
-    // Called after every check of the component's view. Applies to components only.
-    // Add 'implements AfterViewChecked' to the class.
-    this.libros = this.service.libros;
-  }
-  actualizar(){
-    // this.libros = this.service.libros;
+  ngOnChanges(changes: SimpleChange) {
+    console.log(changes);
+    /* let newLibros = changes.currentValue;
+    //this.libros = newLibros;
+    console.log('new libros: ' + newLibros); */
+    this.libros = this.info;
+  
   }
   trackElement(index: number, element: any) {
     return element ? element.guid : null;

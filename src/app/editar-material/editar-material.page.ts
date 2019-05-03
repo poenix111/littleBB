@@ -33,14 +33,13 @@ export class EditarMaterialPage implements OnInit {
   }
 
   ionViewDidEnter(){
- /*    this.material = this.service.info;
-    this.data = this.material; */
+    this.service.backToHome();
   }
 
   actualizar(){
     const useful = Global.dominio + '/editar-material';
 
-    this.http.post(useful, this.data).subscribe( info =>{
+    this.http.post(useful, this.data, {headers : this.service.reqHeader, responseType: 'text'}).subscribe( info =>{
       console.log(useful);
     }, error =>{
       console.log('ERROR');

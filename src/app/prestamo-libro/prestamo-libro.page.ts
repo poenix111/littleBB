@@ -14,15 +14,26 @@ export class PrestamoLibroPage implements OnInit {
   penalizaciones: any;
   ticket = {};
   extension: boolean;
-  date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  dateNew = new Date(Date.now() + (1000 * 60 * 60 * 24) * 3).toISOString().slice(0, 19).replace('T', ' ');
-  dateWithExtension = new Date(Date.now() + (1000 * 60 * 60 * 24) * 5).toISOString().slice(0, 19).replace('T', ' ');
+  libros = [];
+  date = new Date()
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+  dateNew = new Date(Date.now() + 1000 * 60 * 60 * 24 * 3)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
+  dateWithExtension = new Date(Date.now() + 1000 * 60 * 60 * 24 * 5)
+    .toISOString()
+    .slice(0, 19)
+    .replace('T', ' ');
   constructor(public service: ParamService, public http: HttpClient) {}
   data = {};
   ngOnInit() {
-    this.service.libro = true;
-    this.service.prestamo = false;
-    this.extension = false;
+    if (!this.service.backToHome()) {
+      this.service.libro = true;
+      this.extension = false;
+    }
   }
 
   user() {
@@ -102,11 +113,11 @@ export class PrestamoLibroPage implements OnInit {
                 info['dateEntrega'] = this.dateWithExtension;
               } else {
                 info['dateEntrega'] = this.dateNew;
-
               }
               console.log(this.extension);
               console.log(info);
-              this.service.libros.push(info);
+              /* this.service.libros.push(info); */
+              this.libros.push(info);
               this.extension = false;
               this.data['isbn'] = '';
               this.bookColor = false;
@@ -134,7 +145,7 @@ export class PrestamoLibroPage implements OnInit {
           } else {
             info = JSON.parse(info);
             this.penalizaciones = info['penalizaciones'];
-            console.log( 'penalizaciones ' + this.penalizaciones);
+            console.log('penalizaciones ' + this.penalizaciones);
             this.service.userPrestmamo = info;
           }
         },

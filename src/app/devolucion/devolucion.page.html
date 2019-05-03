@@ -3,13 +3,14 @@
 
   <ion-item>
       <ion-label>Codigo de folio</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="data['folio']"></ion-input>
+      <ion-button (click)="showLend()">Buscar</ion-button>
   </ion-item>
 
   <p>Nombre del empleado: </p>
 
   <!-- Aqui comienza el datagrid -->
-  <app-datagrid devolucion="false"></app-datagrid>
+  <app-datagrid [info] = "libros"></app-datagrid>
 
   <ion-button color="danger">Libro dañado</ion-button>
 

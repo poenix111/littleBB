@@ -239,5 +239,22 @@ def deleteUser():
         respuesta.headers.add("Access-Control-Allow-Origin", "*")
         return respuesta
 
-
+@app.route('/return-book', methods = ['POST'])
+def returnBook():
+        prestamo = Prestamo(db)
+        data = request.get_json(force = True)
+        if(prestamo.returnBook(data)):
+                respuesta = make_response("Retorno exitoso")
+                respuesta.headers.add("Access-Control-Allow-Origin", "*")
+                return respuesta
+        else:
+                respuesta = make_response("Usuario penalizado")
+                respuesta.headers.add("Access-Control-Allow-Origin", "*")
+                return respuesta
+@app.route('/show-lend', methods = ['POST'])
+def showLend():
+        prestamo = Prestamo(db)
+        data = request.get_json(force = True)
+        folio = data['folio']
+        return jsonify(prestamo.showLend(folio))
 app.run(debug=True)

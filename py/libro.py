@@ -70,7 +70,7 @@ class Libro:
         self.cursor.execute(show, (isbn,))
 
         r = self.cursor.fetchall()
-        print(r);
+        print(r)
         if (r):
             return 'True'
         else:
@@ -97,6 +97,30 @@ class Libro:
                 "unicos": r[10],
                 "disponibles": r[11]
             }
+        else:
+            return 'False'
+    def searchById(self, id_libro):
+        show = ('SELECT * FROM libro WHERE id_libro = %s')
+
+        self.cursor.execute(show, (id_libro,))
+
+        r = self.cursor.fetchall()
+        if (r):
+            r = r[0]
+            return {
+                    "id_libro": r[0],
+                    "nombre": r[1],
+                    "autor": r[2],
+                    "genero": r[3],
+                    "edicion": r[4],
+                    "editorial": r[5],
+                    "idioma": r[6],
+                    "isbn": r[7],
+                    "descripcion": r[8],
+                    "existencia": r[9],
+                    "unicos": r[10],
+                    "disponibles": r[11]
+                }
         else:
             return 'False'
 
@@ -151,4 +175,14 @@ class Libro:
         self.conexion.commit()
         return str(unicos)
 
+    def returnLibro(self,isbn):
+        disponibles = ('SELECT disponibles FROM libro WHERE isbn = %s')
+        self.cursor.execute(disponibles, (isbn,))
+        result = self.cursor.fetchall()
+        copys = result[0][0]
+        copys = copys + 1
+        query = ('UPDATE libro SET disponibles = %s WHERE isbn = %s')
+        self.cursor.execute(query, (copys,isbn))
+        self.conexion.commit()
+        return str(copys)
     
