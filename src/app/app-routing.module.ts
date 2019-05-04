@@ -5,6 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'prestamo-material', loadChildren: './prestamo-material/prestamo-material.module#PrestamoMaterialPageModule' },
   { path: 'prestamo-libro', loadChildren: './prestamo-libro/prestamo-libro.module#PrestamoLibroPageModule' },
   { path: 'devolucion', loadChildren: './devolucion/devolucion.module#DevolucionPageModule' },
   { path: 'prestamo-libro', loadChildren: './prestamo-libro/prestamo-libro.module#PrestamoLibroPageModule' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'editar-libro', loadChildren: './editar-libro/editar-libro.module#EditarLibroPageModule' },
   { path: 'editar-material', loadChildren: './editar-material/editar-material.module#EditarMaterialPageModule' },
   { path: 'modal-user', loadChildren: './modal-user/modal-user.module#ModalUserPageModule' },
+  
 ];
 
 @NgModule({

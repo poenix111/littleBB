@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChange } from '@angular/core';
+import { Component, OnInit, SimpleChange, Input } from '@angular/core';
 import { ParamService } from 'src/app/param.service';
 import { Global } from 'src/app/global';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,7 @@ export class DatagridComponent implements OnInit {
   @Input() mostrar: boolean;
   @Input() libro: boolean;
   libros = [];
+  materiales = [];
   constructor(public service: ParamService, public http: HttpClient) {}
   ngOnInit() {
     if (!this.service.backToHome()) {
@@ -25,8 +26,12 @@ export class DatagridComponent implements OnInit {
     /* let newLibros = changes.currentValue;
     //this.libros = newLibros;
     console.log('new libros: ' + newLibros); */
-    this.libros = this.info;
-    this.service.libros = this.info;
+    if (this.libro) {
+      this.libros = this.info;
+      this.service.libros = this.info;
+    } else {
+      this.materiales = this.info;
+    }
   }
   trackElement(index: number, element: any) {
     return element ? element.guid : null;

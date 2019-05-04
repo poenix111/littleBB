@@ -22,7 +22,7 @@ import { ModalUserPageModule } from './modal-user/modal-user.module';
     AppRoutingModule,
     ComponentsModule,
     HttpClientModule,
-    ModalUserPageModule
+    ModalUserPageModule,
   ],
   providers: [
     StatusBar,

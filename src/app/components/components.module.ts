@@ -13,19 +13,13 @@ import { ModalUserComponent } from './modal-user/modal-user.component';
     MenuComponent,
     DatagridComponent,
     ModalUserComponent
-    
   ],
   exports: [
     ToolbarComponent,
     MenuComponent,
     DatagridComponent,
     ModalUserComponent
-    
   ],
-  imports: [
-    CommonModule,
-    IonicModule,
-    RouterModule
-  ]
+  imports: [CommonModule, IonicModule, RouterModule]
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

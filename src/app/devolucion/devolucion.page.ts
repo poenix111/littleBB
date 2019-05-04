@@ -15,10 +15,11 @@ export class DevolucionPage implements OnInit {
   libros = [];
   user = {};
   isBook: boolean;
+  controladorDatagrid: boolean;
   ngOnInit() {
     if (!this.service.backToHome()) {
       this.user = JSON.parse(sessionStorage.getItem('usuario'));
-
+      this.controladorDatagrid = false;
     }
   }
   showLend() {
@@ -41,10 +42,13 @@ export class DevolucionPage implements OnInit {
       console.log(info);
       if (info === 'True') {
         this.isBook = true;
+        this.controladorDatagrid = true;
 
       } else if (info === 'False') {
         this.isBook = false;
+        this.controladorDatagrid = true;
       } else {
+        this.controladorDatagrid = false;
       }
 
     }, error => {

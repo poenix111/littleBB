@@ -69,4 +69,21 @@ class Material:
             self.cursor.execute(delete, (numSerie,))
             self.conexion.commit()
 
+    def searchById(self, id_material):
+        show = ('SELECT * FROM material WHERE id_material = %s')
+
+        self.cursor.execute(show, (id_material,))
+
+        r = self.cursor.fetchone()
+        if (r):
+            return {
+                    "id_material": r[0],
+                    "tipo": r[1],
+                    "marca": r[2],
+                    "descripcion": r[3],
+                    "numSerie": r[4]
+            }
+        else:
+            return 'False'
+
         

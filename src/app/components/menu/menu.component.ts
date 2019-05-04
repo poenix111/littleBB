@@ -69,6 +69,11 @@ export class MenuComponent implements OnInit {
     this.title = 'Mostrar usuarios';
     this.router.navigateByUrl('/mostrar-usuarios');
   }
+
+  go_prestamoMaterial() {
+    this.title = 'Prestamo Material';
+    this.router.navigateByUrl('/prestamo-material')
+  }
   doLogout() {
     sessionStorage.clear();
     window.location.reload();

@@ -14,5 +14,5 @@
 </ion-content>
 
 <ion-content class = "datagrid">
-  <app-datagrid [info] = "libros" [mostrar] = "false" [libro] = 'isBook'></app-datagrid>
+  <app-datagrid [info] = "libros" [mostrar] = "false" [libro] = 'isBook' *ngIf="controladorDatagrid"></app-datagrid>
 </ion-content>
