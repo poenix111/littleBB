@@ -1,4 +1,4 @@
-<div class="info">
+<div class="info" *ngIf="libro">
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -69,4 +69,31 @@
       </ng-template>
     </ion-row>
   </ion-grid>
+</div>
+
+<div class = 'info' *ngIf="!libro">
+<ion-row>
+
+  <ion-col>
+    Tipo
+  </ion-col>
+
+  <ion-col>
+    Marca
+  </ion-col>
+
+  <ion-col>
+    Descripcion 
+  </ion-col>
+
+  <ng-container *ngIf="mostrar; else elseTemplate1">
+  </ng-container>
+  <ng-template #elseTemplate1>
+    <ion-col>
+      Entregar
+    </ion-col>
+  </ng-template>
+</ion-row>
+
+<br />
 </div>

@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class DatagridComponent implements OnInit {
   @Input() info: any;
   @Input() mostrar: boolean;
+  @Input() libro: boolean;
   libros = [];
   constructor(public service: ParamService, public http: HttpClient) {}
   ngOnInit() {

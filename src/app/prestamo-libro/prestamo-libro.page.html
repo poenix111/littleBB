@@ -3,7 +3,7 @@
 
     <div class="usuario">
       <p>Código de usuario:</p>
-      <ion-input (keyup) = 'user()' [(ngModel)]="data['usuario']" placeholder="Ingrese..." [ngStyle]="{'color': userColor ? 'green' : 'red'}"></ion-input>
+      <ion-input (keyup) = 'color()' (keydown.enter) = 'user()' [(ngModel)]="data['usuario']" placeholder="Ingrese..." [ngStyle]="{'color': userColor ? 'green' : 'red'}"></ion-input>
       <app-modal-user></app-modal-user>
     </div>
 
@@ -32,7 +32,7 @@
 
     <ion-button (click)="confirmar()" color="success" expand="full">Generar tickect</ion-button>
     <br>
-    <app-datagrid [info] = "libros" class = "datagrid" [mostrar] = 'true'></app-datagrid>
+    <app-datagrid [info] = "libros" class = "datagrid" [mostrar] = 'true' [libro] = 'true'></app-datagrid>
 
  </ion-content>
 

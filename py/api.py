@@ -22,6 +22,7 @@ user = "brian"
 database = "biblioteca"
 
 db = DB(host, user, password, database)
+
 @app.before_request
 def before_request_callback():
     db.conectar()
@@ -265,4 +266,16 @@ def librosEnPosesion():
         usuario = data['usuario']
         return jsonify(prestamo.showPrestados(usuario))
 
-app.run(debug=True)
+@app.route('/cont-books', methods = ['POST'])
+def contBooks():
+        usuario = Usuario(db)
+        data = request.get_json(force = True)
+        user = data['usuario']
+        return usuario.searchContBooks(user)
+@app.route('/tipo', methods = ['POST'])
+def tipo():
+        prestamo = Prestamo(db)
+        data = request.get_json(force = True)
+        folio = data['folio']
+        return str(prestamo.tipo(folio))
+app.run(debug=True, threaded=True)

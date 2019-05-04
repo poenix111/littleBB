@@ -14,8 +14,9 @@ export class DevolucionPage implements OnInit {
   data = {};
   libros = [];
   user = {};
+  isBook: boolean;
   ngOnInit() {
-    if(!this.service.backToHome()) {
+    if (!this.service.backToHome()) {
       this.user = JSON.parse(sessionStorage.getItem('usuario'));
 
     }
@@ -28,10 +29,26 @@ export class DevolucionPage implements OnInit {
       this.libros  = JSON.parse(info);
       this.service.folio = this.data['folio'];
 
-    }, error =>{
+    }, error => {
       console.log('ERROR');
     });
 
   }
 
+  searchType() {
+    const useful = Global.dominio + '/tipo';
+    this.http.post(useful, this.data, {headers : this.service.reqHeader, responseType: 'text'}).subscribe( info => {
+      console.log(info);
+      if (info === 'True') {
+        this.isBook = true;
+
+      } else if (info === 'False') {
+        this.isBook = false;
+      } else {
+      }
+
+    }, error => {
+      console.log('ERROR');
+    });
+  }
 }

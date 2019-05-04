@@ -3,7 +3,7 @@
 
   <ion-item>
       <ion-label>Codigo de folio</ion-label>
-      <ion-input [(ngModel)]="data['folio']"></ion-input>
+      <ion-input (keyup) = 'searchType()' [(ngModel)]="data['folio']"></ion-input>
       <ion-button (click)="showLend()">Buscar</ion-button>
   </ion-item>
 
@@ -14,5 +14,5 @@
 </ion-content>
 
 <ion-content class = "datagrid">
-  <app-datagrid [info] = "libros" [mostrar] = "false"></app-datagrid>
+  <app-datagrid [info] = "libros" [mostrar] = "false" [libro] = 'isBook'></app-datagrid>
 </ion-content>

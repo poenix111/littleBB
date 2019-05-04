@@ -10,7 +10,6 @@ import { Global } from '../global';
 export class PrestamoLibroPage implements OnInit {
   userColor = false;
   bookColor = false;
-  contBook: any;
   penalizaciones: any;
   ticket = {};
   extension: boolean;
@@ -33,20 +32,36 @@ export class PrestamoLibroPage implements OnInit {
   usuario = {};
 
   librosPrestamos = [];
-
+  contLibros: number;
   ngOnInit() {
     if (!this.service.backToHome()) {
       this.service.libro = true;
       this.extension = false;
+      this.contLibros = 0;
     }
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
   }
 
   user() {
+    this.librosPrestamos = [];
+    this.libros = [];
+    this.contLibros = 0;
     const reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'No-Auth': 'True'
     });
+
+    this.info(reqHeader);
+    this.obtenerLibros(reqHeader);
+    this.searchContBooks(reqHeader)
+ 
+  }
+  color() {
+    const reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'No-Auth': 'True'
+    });
+
     const useful = Global.dominio + '/exists';
     this.http
       .post(useful, this.data, { headers: reqHeader, responseType: 'text' })
@@ -56,9 +71,9 @@ export class PrestamoLibroPage implements OnInit {
           console.log(this.penalizaciones); */
           if (info === 'True') {
             this.userColor = true;
-            this.info(reqHeader);
-            this.obtenerLibros(reqHeader);
             this.service.hasUser = true;
+            
+
           } else {
             this.userColor = false;
             this.service.hasUser = false;
@@ -70,7 +85,6 @@ export class PrestamoLibroPage implements OnInit {
         }
       );
   }
-
   libro() {
     const reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -97,43 +111,49 @@ export class PrestamoLibroPage implements OnInit {
   } */
 
   pushBook() {
-    if (!this.librosPrestamos.includes(this.data['isbn'])) {
-      if (this.bookColor && this.penalizaciones < 3) {
-        const reqHeader = new HttpHeaders({
-          'Content-Type': 'application/json',
-          'No-Auth': 'True'
-        });
-        const useful = Global.dominio + '/book-exists';
-        this.http
-          .post(useful, this.data, { headers: reqHeader, responseType: 'text' })
-          .subscribe(
-            info => {
-              if (info === 'False') {
-              } else {
-                this.librosPrestamos.push(this.data['isbn']);
-                info = JSON.parse(info);
-                info['extension'] = this.extension;
-                info['date'] = this.date;
+    if (this.librosPrestamos.includes(this.data['isbn'])) {
+      alert('Tiene ese libro en posesion');
+      return;
+    }
+    if (this.contLibros === 5) {
+      alert('Ya no puede sacar libros por que tiene 5 en posesion');
+      return;
+    }
 
-                if (this.extension) {
-                  info['dateEntrega'] = this.dateWithExtension;
-                } else {
-                  info['dateEntrega'] = this.dateNew;
-                }
-                /* this.service.libros.push(info); */
-                this.libros.push(info);
-                this.extension = false;
-                this.data['isbn'] = '';
-                this.bookColor = false;
+    if (this.bookColor && this.penalizaciones < 3) {
+      const reqHeader = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'No-Auth': 'True'
+      });
+      const useful = Global.dominio + '/book-exists';
+      this.http
+        .post(useful, this.data, { headers: reqHeader, responseType: 'text' })
+        .subscribe(
+          info => {
+            if (info === 'False') {
+            } else {
+              this.librosPrestamos.push(this.data['isbn']);
+              info = JSON.parse(info);
+              info['extension'] = this.extension;
+              info['date'] = this.date;
+
+              if (this.extension) {
+                info['dateEntrega'] = this.dateWithExtension;
+              } else {
+                info['dateEntrega'] = this.dateNew;
               }
-            },
-            error => {
-              console.log('ERROR');
+              /* this.service.libros.push(info); */
+              this.libros.push(info);
+              this.extension = false;
+              this.data['isbn'] = '';
+              this.bookColor = false;
+              this.contLibros++;
             }
-          );
-      }
-    } else {
-      alert('El libro ya se encuentra en posesion');
+          },
+          error => {
+            console.log('ERROR');
+          }
+        );
     }
   }
 
@@ -173,11 +193,29 @@ export class PrestamoLibroPage implements OnInit {
       .subscribe(
         info => {
           const books = JSON.parse(info);
-// tslint:disable-next-line: forin
+          // tslint:disable-next-line: forin
           for (const i in books) {
             this.librosPrestamos.push(books[i]);
           }
           console.log(this.librosPrestamos);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  }
+
+  searchContBooks(reqHeader: HttpHeaders) {
+    const useful = Global.dominio + '/cont-books';
+    this.http
+      .post(useful, this.data, {
+        headers: reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
+          this.contLibros = Number(info);
+          console.log('contLibros ' + info);
         },
         error => {
           console.log(error);
@@ -200,6 +238,12 @@ export class PrestamoLibroPage implements OnInit {
       .subscribe(
         info => {
           console.log(info);
+          this.service.presentAlert(
+            'Prestamo creado',
+            'El prestamo fue creado'
+          );
+
+          this.libros = [];
         },
         error => {
           console.log('ERROR');

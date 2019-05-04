@@ -111,20 +111,20 @@ class Usuario:
         select = ('SELECT * FROM usuario WHERE id_usuario = %s')
         self.cursor.execute(select, (usuario,))
         u = self.cursor.fetchall()
-        print(u)
-        u = u[0]
-        return {
-            "id_usuario": u[0],
-            "nombre": u[1],
-            "tipo": u[2],
-            "email": u[3],
-            "telefono": u[4],
-            "pass": u[5],
-            "estado": u[6],
-            "fechaRegistro": u[7],
-            "penalizaciones": u[8],
-            "area": u[9]
-        }
+        if(u):
+            u = u[0]
+            return {
+                "id_usuario": u[0],
+                "nombre": u[1],
+                "tipo": u[2],
+                "email": u[3],
+                "telefono": u[4],
+                "pass": u[5],
+                "estado": u[6],
+                "fechaRegistro": u[7],
+                "penalizaciones": u[8],
+                "area": u[9]
+            }
 
     def penalizar(self, usuario):
 
@@ -152,9 +152,53 @@ class Usuario:
     def changeStatus(self, usuario):
        user = self.showInfo(usuario)
 
-       update = ('UPDATE usuario SET estado = %s')
+       update = ('UPDATE usuario SET estado = %s WHERE id_usuario = %s')
 
        if(user['penalizaciones'] == 5):
-           self.cursor.execute(update, (False, ))
+           self.cursor.execute(update, (False, usuario))
            self.conexion.commit()
        
+    def aumentarContLibros(self, usuario):
+        query = ('SELECT contLibros FROM libroUsuarios WHERE id_user = %s')
+
+        self.cursor.execute(query, (usuario,))
+
+        resultado = self.cursor.fetchall()
+
+        if(resultado):
+
+            contLibros = resultado[0][0] + 1
+            
+
+            actualizar = ('UPDATE libroUsuarios SET contLibros = %s WHERE id_user = %s')
+            self.cursor.execute(actualizar, (contLibros,usuario))
+            self.conexion.commit()
+        
+        else:
+            insert = ('INSERT INTO libroUsuarios(id_user, contLibros) VALUES(%s, %s)')
+
+            self.cursor.execute(insert, (usuario, 1))
+            self.conexion.commit()
+
+    def disminuirContLibros(self, usuario):
+        query = ('SELECT contLibros FROM libroUsuarios WHERE id_user = %s')            
+        self.cursor.execute(query, (usuario,))
+        resultado = self.cursor.fetchall()
+        if(resultado):
+            contLibros = resultado[0][0] - 1
+            actualizar = ('UPDATE libroUsuarios SET contLibros = %s WHERE id_user = %s')
+            self.cursor.execute(actualizar, (contLibros,usuario))
+            self.conexion.commit()
+        
+        
+    def searchContBooks(self, usuario):
+        query = ('SELECT contLibros FROM libroUsuarios WHERE id_user = %s')
+
+        self.cursor.execute(query, (usuario,))
+
+        resultado = self.cursor.fetchall()
+
+        if(resultado):
+            return str(resultado[0][0])
+        else:
+            return str(0)
