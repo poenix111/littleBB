@@ -1,6 +1,4 @@
-<!-- <ion-content class="prestamo">
- 
-
+<ion-content class="prestamo">
   <ion-item>
     <ion-label>Código de usuario:</ion-label>
     <ion-input
@@ -14,10 +12,12 @@
       [(ngModel)]="data['numSerie']"
       placeholder="Ingrese..."
     ></ion-input>
-    
   </ion-item>
 
-
-</ion-content> -->
-
-<app-datagrid [info] = "materiales" class = "datagrid" [mostrar] = 'true' [libro] = 'true'></app-datagrid>
+  <app-datagrid
+    [info]="materiales"
+    class="datagrid"
+    [mostrar]="true"
+    [libro]="true"
+  ></app-datagrid>
+</ion-content>
