@@ -15,6 +15,7 @@ export class PrestamoMaterialPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
