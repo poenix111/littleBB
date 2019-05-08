@@ -89,6 +89,14 @@
     <ion-col>
       Numero de Serie
     </ion-col>
+
+    <ion-col>
+      Fecha de prestamo
+    </ion-col>
+
+    <ion-col>
+      Fecha de entrega
+    </ion-col>
     <ng-container *ngIf="mostrar; else elseTemplate1"> </ng-container>
     <ng-template #elseTemplate1>
       <ion-col>
@@ -99,24 +107,32 @@
 
   <ion-row *ngFor="let m of materiales">
     <ion-col>
-      m.tipo
+      {{m.tipo}}
     </ion-col>
 
     <ion-col>
-      m.marca
+      {{m.marca}}
     </ion-col>
 
     <ion-col>
-      m.descripcion
+      {{m.descripcion}}
     </ion-col>
 
     <ion-col>
-      m.numSerie
+      {{m.numSerie}}
     </ion-col>
+    <ion-col>
+      {{ m.date }}
+    </ion-col>
+
+    <ion-col>
+      {{ m.dateEntrega }}
+    </ion-col>
+
     <ng-container *ngIf="mostrar; else elseTemplate4"> </ng-container>
     <ng-template #elseTemplate4>
       <ion-col>
-        <ion-button shape="round" style="top: -30% !important;">
+        <ion-button (click)="returnMaterial(m)" shape="round" style="top: -30% !important;">
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>

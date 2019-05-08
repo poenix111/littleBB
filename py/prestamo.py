@@ -14,7 +14,10 @@ class Prestamo:
         prestamoId = self.nextValue()
         
         crearPrestamoNormal = ('INSERT INTO prestamo(id_user, fecha) VALUES (%s, %s)')
-        valuesPrestamoNormal = (data['usuario'], data['libros'][0]['date'])
+        if(libro):
+            valuesPrestamoNormal = (data['usuario'], data['libros'][0]['date'])
+        else:
+            valuesPrestamoNormal = (data['usuario'], data['materiales'][0]['date'])
 
         crearPrestamoLibro = ('INSERT INTO prestamoLibro(folio, id_libro, fechaDevolucion, extension) VALUES (%s, %s, %s, %s)')
         
@@ -38,6 +41,7 @@ class Prestamo:
         else:
 
             for material in data['materiales']:
+                self.usuario.aumentarContMateriales(data['usuario'])
                 valuesPrestamoMaterial = (prestamoId, material['id_material'], material['dateEntrega'])
                 self.cursor.execute(crearPrestamoMaterial, valuesPrestamoMaterial)
                 self.conexion.commit()
@@ -81,8 +85,21 @@ class Prestamo:
                 
                 return libros
         else:
-            pass
+            query = ('SELECT * FROM prestamoMaterial WHERE folio = %s')
 
+            self.cursor.execute(query, (folio,))
+
+            resultados = self.cursor.fetchall()
+            materiales = []
+
+            if(resultados):
+                for resultado in resultados:
+                    m = self.material.searchById(resultado[1])
+                    m['date'] = str(realLend[2])
+                    m['dateEntrega'] = str(resultado[2])
+                    m['usuario'] = realLend[1]
+                    materiales.append(m)
+                return materiales
             #hacer lo de los materiales
 
 
@@ -103,7 +120,9 @@ class Prestamo:
             diasAtraso = abs(today - fechaDevolucion).days
             self.cobroPrestamo(data['folio'],diasAtraso)
             return False 
-    
+    def returnMaterial(self,data):
+        self.borrarPrestamo(data['folio'],data['id_material'], False)
+
     def borrarPrestamo(self, folio, idPrestado, libro = True):
         if libro:
             delete = ('DELETE FROM prestamoLibro WHERE folio = %s AND id_libro = %s')
@@ -150,7 +169,7 @@ class Prestamo:
                     resultadosMateriales = self.cursor.fetchall()
                     if(resultadosMateriales):
                         for material in resultadosMateriales:
-                            materiales.append(self.material.searchById(libro[0])['numSerie'])
+                            materiales.append(self.material.searchById(material[0])['tipo'])
                             #libros.append(libro[0])
                 return materiales
 
@@ -195,5 +214,4 @@ class Prestamo:
             return None
             
 
-            
-
+        

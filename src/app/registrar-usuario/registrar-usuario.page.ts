@@ -35,16 +35,18 @@ export class RegistrarUsuarioPage implements OnInit {
       'Content-Type': 'application/json',
       'No-Auth': 'True'
     });
-    
+
     const useful = Global.dominio + '/registrar-usuario';
-    this.http.post(useful, this.data,{ headers: reqHeader, responseType: 'text' }).subscribe(
-      info => {
-        console.log(useful);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.http
+      .post(useful, this.data, { headers: reqHeader, responseType: 'text' })
+      .subscribe(
+        info => {
+          console.log(useful);
+        },
+        error => {
+          console.log(error);
+        }
+      );
 
     this.router.navigateByUrl('mostrar-usuarios');
   }

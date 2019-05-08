@@ -52,4 +52,21 @@ export class DatagridComponent implements OnInit {
     });
 
   }
+
+
+  returnMaterial(material) {
+    const useful = Global.dominio + '/return-material';
+    material['folio'] = this.service.folio;
+    this.http.post(useful, material, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
+      console.log(info);
+      this.materiales.splice(this.libros.indexOf(material), 1);
+      console.log(this.materiales);
+      if (info === 'Usuario penalizado') {
+         /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
+      }
+    }, error =>{
+      console.log('ERROR');
+    });
+    
+  }
 }

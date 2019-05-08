@@ -8,6 +8,7 @@
     <ion-list>
       <ion-item *ngIf="!mostrar" (click)="go_login()">Login</ion-item>
       <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_prestamo()">Prestamo libro</ion-item>
+      <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_prestamoMaterial()">Prestamo Material</ion-item>
       <ion-item *ngIf="mostrar && user['tipo'] >  2" (click)="go_devolucion()">Devolucion</ion-item>
       <ion-item *ngIf="mostrar && user['tipo'] >  2" (click)="go_registroUser()">Registrar usuario</ion-item>
       <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_registroLibro()">Registrar libro</ion-item>
@@ -15,7 +16,6 @@
       <ion-item (click)="go_mostrarLibros()">Mostrar Libros</ion-item>
       <ion-item (click)="go_mostrarMaterial()">Mostrar Material</ion-item>
       <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_mostrarUsuarios()">Mostrar usuarios</ion-item>
-      <ion-item *ngIf="mostrar && user['tipo']  >  2" (click)="go_prestamoMaterial()">Prestamo Material</ion-item>
 
     </ion-list>
   </ion-content>

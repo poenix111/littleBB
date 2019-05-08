@@ -86,4 +86,34 @@ class Material:
         else:
             return 'False'
 
+
+
+    def jsonExists(self, numSerie):
+        show = ('SELECT * FROM material WHERE numSerie = %s')
+
+        self.cursor.execute(show, (numSerie,))
+
+        r = self.cursor.fetchone()
+        if (r):
+            return {
+                "id_material": r[0],
+                "tipo": r[1],
+                "marca": r[2],
+                "descripcion": r[3],
+                "numSerie": r[4]
+            }
+        else:
+            return 'False'
         
+
+    def isInLean(self, numSerie):
+        query = ('SELECT * FROM prestamoMaterial WHERE numSerie = %s')
+
+        self.cursor.execute(query, (numSerie,))
+
+        resultado = self.cursor.fetchall()
+
+        if(resultado):
+            return True
+        else:
+            return False

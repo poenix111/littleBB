@@ -14,15 +14,14 @@ class Usuario:
         date = datetime.now()
         estado = True
         penalizaciones = 0
-        tipoReal = type(int)
-        if(data["tipo"] == 'bibliotecario' or data["tipo"] == ''):
+        """  if(data["tipo"] == 'bibliotecario'):
             tipoReal = 3
         elif(data["tipo"] == "maestro"):
             tipoReal = 2
-        elif(data["tipo"] == "estudiante"):
-            tipoReal = 1
+        elif(data["tipo"] == "estudiante" or data["tipo"] == ''):
+            tipoReal = 1 """
 
-        self.cursor.execute(insertar, (data["usuario"], data["nombre"], tipoReal, data["email"],
+        self.cursor.execute(insertar, (data["usuario"], data["nombre"], data['tipo'], data["email"],
                                        data["telefono"], h, estado, date, penalizaciones, data["area"]))
         self.conexion.commit()
 
@@ -53,23 +52,20 @@ class Usuario:
             update = ('UPDATE usuario SET nombre = %s, tipo = %s, email = %s, telefono = %s, pass = %s, penalizaciones = %s, area = %s, estado = %s WHERE id_usuario = %s')
         else:
             update = ('UPDATE usuario SET nombre = %s, tipo = %s, email = %s, telefono = %s, penalizaciones = %s, area = %s, estado = %s WHERE id_usuario = %s')
-
-        tipoReal = type(int)
         h = hashlib.new('sha256', bytes(usuario['pass'], 'utf-8'))
         h = h.hexdigest()
-        tipoAux = usuario['tipo']
-        if(tipoAux == 'bibliotecario' or tipoAux == '' or tipoAux == 1):
+        """  tipoAux = usuario['tipo']
+        if(tipoAux == 'bibliotecario' or tipoAux == 1):
             tipoReal = 3
         elif(tipoAux == "maestro" or tipoAux == 2):
             tipoReal = 2
-        elif(tipoAux == "estudiante" or tipoAux == 3):
-            tipoReal = 1
-        print(usuario)
+        elif(tipoAux == "estudiante" or tipoAux == 3 or tipoAux == ''):
+            tipoReal = 1 """
         if(usuario['pass'] != ''):
-            self.cursor.execute(update, (usuario['nombre'], tipoReal, usuario['email'],
+            self.cursor.execute(update, (usuario['nombre'], usuario['tipo'], usuario['email'],
                                          usuario['telefono'], h, usuario['penalizaciones'], usuario['area'], usuario['estado'], usuario['id_usuario']))
         else:
-            self.cursor.execute(update, (usuario['nombre'], tipoReal, usuario['email'],
+            self.cursor.execute(update, (usuario['nombre'], usuario['tipo'], usuario['email'],
                                          usuario['telefono'], usuario['penalizaciones'], usuario['area'], usuario['estado'], usuario['id_usuario']))
         self.conexion.commit()
 
@@ -190,7 +186,38 @@ class Usuario:
             self.cursor.execute(actualizar, (contLibros,usuario))
             self.conexion.commit()
         
+    def aumentarContMateriales(self, usuario):
+        query = ('SELECT contMateriales FROM materialesUsuarios WHERE id_user = %s')
+
+        self.cursor.execute(query, (usuario,))
+
+        resultado = self.cursor.fetchall()
+
+        if(resultado):
+
+            contMaterial = resultado[0][0] + 1
+            
+
+            actualizar = ('UPDATE materialesUsuarios SET contMateriales = %s WHERE id_user = %s')
+            self.cursor.execute(actualizar, (contMaterial,usuario))
+            self.conexion.commit()
         
+        else:
+            insert = ('INSERT INTO libroUsuarios(id_user, contLibros) VALUES(%s, %s)')
+
+            self.cursor.execute(insert, (usuario, 1))
+            self.conexion.commit()
+
+
+    def disminuirContMateriales(self, usuario):
+        query = ('SELECT contMateriales FROM materialesUsuarios WHERE id_user = %s')            
+        self.cursor.execute(query, (usuario,))
+        resultado = self.cursor.fetchall()
+        if(resultado):
+            contLibros = resultado[0][0] - 1
+            actualizar = ('UPDATE materialesUsuarios SET contMateriales = %s WHERE id_user = %s')
+            self.cursor.execute(actualizar, (contLibros,usuario))
+            self.conexion.commit()
     def searchContBooks(self, usuario):
         query = ('SELECT contLibros FROM libroUsuarios WHERE id_user = %s')
 
@@ -202,3 +229,28 @@ class Usuario:
             return str(resultado[0][0])
         else:
             return str(0)
+    def searchContMaterials(self, usuario):
+        query = ('SELECT contMateriales FROM materialesUsuarios WHERE id_user = %s')
+
+        self.cursor.execute(query, (usuario,))
+
+        resultado = self.cursor.fetchall()
+
+        if(resultado):
+            return str(resultado[0][0])
+        else:
+            return str(0)
+    def existsMaestro(self, usuario):
+
+        select = ('SELECT * FROM usuario WHERE id_usuario = %s')
+        self.cursor.execute(select, (usuario,))
+        resultado = self.cursor.fetchone()
+        print(resultado)
+        if resultado:
+            print('El resultado es: ' + str(resultado[2]))
+            if(resultado[2] > 1):
+                return True
+
+            return False
+        else:
+            return False

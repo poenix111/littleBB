@@ -10,6 +10,11 @@ import { Global } from '../global';
 export class PrestamoLibroPage implements OnInit {
   userColor = false;
   bookColor = false;
+
+  controlClock = false;
+
+
+
   penalizaciones: any;
   ticket = {};
   extension: boolean;
@@ -38,6 +43,7 @@ export class PrestamoLibroPage implements OnInit {
       this.service.libro = true;
       this.extension = false;
       this.contLibros = 0;
+      this.timeout();
     }
     this.usuario = JSON.parse(sessionStorage.getItem('usuario'));
   }
@@ -56,6 +62,8 @@ export class PrestamoLibroPage implements OnInit {
     this.searchContBooks(reqHeader)
  
   }
+
+
   color() {
     const reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -72,7 +80,7 @@ export class PrestamoLibroPage implements OnInit {
           if (info === 'True') {
             this.userColor = true;
             this.service.hasUser = true;
-            
+            this.controlClock = false;
 
           } else {
             this.userColor = false;
@@ -174,11 +182,14 @@ export class PrestamoLibroPage implements OnInit {
             this.penalizaciones = info['penalizaciones'];
             console.log('penalizaciones ' + this.penalizaciones);
             this.service.userPrestmamo = info;
+            this.controlClock = true;
+
           }
         },
         error => {
           console.log('ERROR');
           console.log(error);
+          this.controlClock = false;
         }
       );
   }
@@ -198,9 +209,13 @@ export class PrestamoLibroPage implements OnInit {
             this.librosPrestamos.push(books[i]);
           }
           console.log(this.librosPrestamos);
+          this.controlClock = true;
+
         },
         error => {
           console.log(error);
+          this.controlClock = false;
+
         }
       );
   }
@@ -216,9 +231,13 @@ export class PrestamoLibroPage implements OnInit {
         info => {
           this.contLibros = Number(info);
           console.log('contLibros ' + info);
+          this.controlClock = true;
+
         },
         error => {
           console.log(error);
+          this.controlClock = false;
+
         }
       );
   }
@@ -252,4 +271,21 @@ export class PrestamoLibroPage implements OnInit {
       );
     console.log(this.ticket);
   }
+
+
+
+
+
+
+  timeout() {
+    setTimeout(() => {
+      console.log('Test');
+      if (this.userColor && !this.controlClock) {
+        this.user();
+      }
+
+      this.timeout();
+    }, 1000);
+  }
 }
+  

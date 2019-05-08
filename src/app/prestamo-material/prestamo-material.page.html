@@ -2,22 +2,28 @@
   <ion-item>
     <ion-label>Código de usuario:</ion-label>
     <ion-input
+      (keyup)="color()"
       [(ngModel)]="data['usuario']"
       placeholder="Ingrese..."
+      [ngStyle]="{ color: userColor ? 'green' : 'red' }"
     ></ion-input>
   </ion-item>
   <ion-item>
     <ion-label>Numero de serie: </ion-label>
     <ion-input
+      (keyup)="colorMaterial()"
+      (keydown.enter) = "pushMaterial()"
+      [ngStyle]="{ color: materialColor ? 'green' : 'red' }"
       [(ngModel)]="data['numSerie']"
       placeholder="Ingrese..."
     ></ion-input>
   </ion-item>
-
+  <ion-button (click)="confirmar()" color="success" expand="full"
+  >Generar tickect</ion-button>
   <app-datagrid
     [info]="materiales"
     class="datagrid"
     [mostrar]="true"
-    [libro]="true"
+    [libro]="false"
   ></app-datagrid>
 </ion-content>
