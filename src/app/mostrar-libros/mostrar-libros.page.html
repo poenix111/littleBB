@@ -6,12 +6,18 @@
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 
-  <ion-card *ngFor="let l of libros" class = 'card' (click)="sendInfo(l)"> 
+  <ion-card *ngFor="let l of libros" class = 'card'> 
     <ion-card-header>
       <ion-card-subtitle>{{l.autor}}</ion-card-subtitle>
       <ion-card-title>{{l.nombre}}</ion-card-title>
     </ion-card-header>
-
+    <ion-button *ngIf="show && user['tipo'] > 2" (click)="sendInfo(l)">
+      Editar</ion-button
+    >
+    <ion-button *ngIf="show && user['tipo'] > 2" (click)="borrar(l)">
+      Borrar</ion-button
+    >
+    <br [hidden]="!show" />
     <ion-card-content>
       Descripcion: {{l.descripcion}} <br>
       Editorial: {{l.editorial}} Edicion: {{l.edicion}}<br>

@@ -106,8 +106,16 @@
   </ion-row>
 
   <ion-row *ngFor="let m of materiales">
-    <ion-col>
-      {{m.tipo}}
+    <ion-col *ngIf="m.tipo === 1">
+      Laptop
+    </ion-col>
+
+    <ion-col *ngIf="m.tipo === 2">
+      Bocina
+    </ion-col>
+
+    <ion-col *ngIf="m.tipo === 3">
+      Proyector
     </ion-col>
 
     <ion-col>

@@ -1,11 +1,17 @@
-
-
-<ion-content padding class="login_contenido"> 
-  <ion-icon name="book" class = "libro_icon"></ion-icon>
+<ion-content padding class="login_contenido">
+  <ion-icon name="book" class="libro_icon"></ion-icon>
   <div id="div_inputs">
-    <ion-input [(ngModel)]="data['usuario']" placeholder="Usuario"></ion-input>
-    <ion-input [(ngModel)]="data['contra']" type="password" placeholder = "password"></ion-input>
+    <ion-input
+      (keyup)="login()"
+      [(ngModel)]="data['usuario']"
+      placeholder="Usuario"
+    ></ion-input>
+    <ion-input
+      (keyup)="login()"
+      [(ngModel)]="data['contra']"
+      type="password"
+      placeholder="password"
+    ></ion-input>
     <ion-button color="primary" (click)="login()">Entrar</ion-button>
   </div>
-  
 </ion-content>

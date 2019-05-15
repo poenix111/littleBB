@@ -31,7 +31,7 @@ export class MostrarUsuariosPage implements OnInit {
   mostrar() {
     if (this.buscar === '*' || this.buscar === '') {
       const useful = Global.dominio + '/recuperar-usuarios';
-
+      this.usuarios = [];
       this.http.get(useful).subscribe(
         data => {
           // tslint:disable-next-line: forin
@@ -65,6 +65,9 @@ export class MostrarUsuariosPage implements OnInit {
               'Error al borrar el usuario',
               'El usuario tiene prestamos pendites, por lo tanto no se puede borrar'
             );
+          } else {
+            this.usuarios.splice(this.usuarios.indexOf(user), 1);
+
           }
         },
         error => {
@@ -72,5 +75,9 @@ export class MostrarUsuariosPage implements OnInit {
         }
       );
   }
+
+  trackByFn(index, item) {
+    return index; // or item.id
+}
   
 }

@@ -117,7 +117,7 @@ export class PrestamoLibroPage implements OnInit {
   /* trackByFn(index, item) {
     return index; // or item.id
   } */
-
+  
   pushBook() {
     if (this.librosPrestamos.includes(this.data['isbn'])) {
       alert('Tiene ese libro en posesion');

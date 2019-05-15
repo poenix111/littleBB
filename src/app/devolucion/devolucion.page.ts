@@ -62,6 +62,7 @@ export class DevolucionPage implements OnInit {
   }
 
   searchType() {
+    this.prestados = [];
     const useful = Global.dominio + '/tipo';
     this.http
       .post(useful, this.data, {

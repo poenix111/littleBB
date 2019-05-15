@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ParamService {
-  constructor(public alertController: AlertController, public loadingController: LoadingController) { }
+  constructor(public alertController: AlertController, public loadingController: LoadingController, public router: Router) { }
   userPrestmamo = {};
   hasUser: boolean;
   prestamo: boolean;
@@ -43,7 +44,7 @@ export class ParamService {
   }
   backToHome(){
     if (sessionStorage.getItem('usuario') === null || JSON.parse(sessionStorage.getItem('usuario'))['tipo'] < 3) {
-      window.location.replace('/');
+      this.router.navigateByUrl('/');
       return true;
     }
 

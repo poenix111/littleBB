@@ -12,13 +12,19 @@ export class MostrarLibrosPage implements OnInit {
   buscar = '';
   libros = [];
   constructor(public http:HttpClient, public router:Router, public service:ParamService) { }
-
+  user: any;
+  show: boolean;
   ngOnInit() {
-
+    if (!this.service.backToHome()) {
+      this.user = JSON.parse(sessionStorage.getItem('usuario'));
+      if (this.user !== null) {
+        this.show = true;
+      }
+    }
   }
 
   mostrar(){
-
+    this.libros = [];
     if(this.buscar === '*' || this.buscar === ''){
       const useful = Global.dominio + '/recuperar-libros/';
       this.http.get(useful).subscribe(data =>{
@@ -40,5 +46,32 @@ export class MostrarLibrosPage implements OnInit {
   sendInfo(l){
     this.router.navigateByUrl('/editar-libro');
     this.service.info = l;
+  }
+
+
+  borrar(book) {
+    const useful = Global.dominio + '/delete-book';
+    this.http
+      .post(useful, JSON.stringify(book), {
+        headers: this.service.reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
+          console.log(info);
+          if (info === 'Error') {
+            this.service.presentAlert(
+              'Error al borrar el libro',
+              'El libro esta prestado, por lo tanto no se puede borrar'
+            );
+          } else {
+            this.libros.splice(this.libros.indexOf(book), 1);
+
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }

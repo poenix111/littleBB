@@ -2,5 +2,31 @@
 
 <ion-content padding>
   <!-- <app-barra-nav></app-barra-nav> -->
+  
+  <br>
+  <br>
 
+  <div *ngFor="let n of folios">
+    Folio activos : {{n.folio}}
+  </div>
+  <div *ngFor="let f of prestadoLibro">
+
+      <app-datagrid
+      [info]="f"
+      class="datagrid"
+      [mostrar]="true"
+      [libro]="true"
+    ></app-datagrid>
+  </div>
+
+  <div *ngFor="let f of prestadoMaterial">
+
+      <app-datagrid
+      [info]="f"
+      class="datagrid"
+      [mostrar]="true"
+      [libro]="false"
+    ></app-datagrid>
+  </div>
+  
 </ion-content>

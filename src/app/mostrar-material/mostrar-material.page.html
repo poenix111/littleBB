@@ -1,20 +1,26 @@
-<ion-content padding class = "mainMostrarMaterial">
+<ion-content padding class="mainMostrarMaterial">
   <ion-item>
     <ion-label>Numero de serie</ion-label>
     <ion-input [(ngModel)]="buscar"></ion-input>
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 
-  <ion-card *ngFor="let m of materiales" (click)="sendInfo(m)">
-    <ion-card-subtitle>{{m.marca}}</ion-card-subtitle>
-      <ion-card-title *ngIf="m.tipo === 1">Laptop</ion-card-title>
-      <ion-card-title *ngIf="m.tipo === 2">Bocina</ion-card-title>
-      <ion-card-title *ngIf="m.tipo === 3">Proyector</ion-card-title>
-      <ion-card-content>
-        Descripcion: {{m.descripcion}} <br>
-        Numero de serie: {{m.numSerie}}
-      </ion-card-content>
+  <ion-card *ngFor="let m of materiales">
+    <ion-card-subtitle>{{ m.marca }}</ion-card-subtitle>
+    <ion-button *ngIf="show && user['tipo'] > 2" (click)="sendInfo(m)">
+        Editar</ion-button
+      >
+      <ion-button *ngIf="show && user['tipo'] > 2" (click)="borrar(m)">
+        Borrar</ion-button
+      >
+      <br [hidden]="!show" />
+    <ion-card-title *ngIf="m.tipo === 1">Laptop</ion-card-title>
+    <ion-card-title *ngIf="m.tipo === 2">Bocina</ion-card-title>
+    <ion-card-title *ngIf="m.tipo === 3">Proyector</ion-card-title>
+    <ion-card-content>
+     
+      Descripcion: {{ m.descripcion }} <br />
+      Numero de serie: {{ m.numSerie }}
+    </ion-card-content>
   </ion-card>
-
- 
 </ion-content>

@@ -5,7 +5,7 @@
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
   <ion-content>
-    <ion-card *ngFor="let u of usuarios">
+    <ion-card *ngFor="let u of usuarios;trackBy: trackByFn">
       <ion-card-subtitle>Codigo: {{ u.id_usuario }}</ion-card-subtitle>
       <ion-card-title>{{ u.nombre }}</ion-card-title>
       <ion-card-content>

@@ -10,8 +10,7 @@
         [ngStyle]="{ color: userColor ? 'green' : 'red' }"
       ></ion-input>
       <div [hidden]="!userColor">
-        <ion-spinner [hidden]="controlClock" name="dots"></ion-spinner>    
-
+        <ion-spinner [hidden]="controlClock" name="dots"></ion-spinner>
       </div>
 
       <app-modal-user></app-modal-user>
@@ -45,13 +44,12 @@
         </ion-button>
       </div>
     </div>
-    <p>Empleado: {{ usuario.nombre }}</p>
+    <p>Empleado: {{ usuario['nombre'] }}</p>
 
-    <p>Codigo:{{ usuario.id_usuario }}</p>
+    <p>Codigo:{{ usuario['id_usuario'] }}</p>
 
     <ion-button (click)="confirmar()" color="success" expand="full"
-      >Generar tickect</ion-button
-    >
+      >Generar tickect</ion-button>
     <br />
     <app-datagrid
       [info]="libros"

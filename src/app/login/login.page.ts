@@ -23,11 +23,14 @@ export class LoginPage implements OnInit {
     const useful = Global.dominio + '/login';
     this.http.post(useful, this.data).subscribe(
       info => {
+        console.log(info);
         if (info != null) {
+          console.log(info);
           sessionStorage.setItem('usuario', JSON.stringify(info));
           /* window.location.reload();
           this.router.navigateByUrl('/'); */
-          window.location.assign('/');
+          // window.location.assign('/');
+           window.location.assign('/littleBB/home');
         }
       },
       error => {

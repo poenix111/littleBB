@@ -214,4 +214,3 @@ class Prestamo:
             return None
             
 
-        
