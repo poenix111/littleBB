@@ -42,8 +42,17 @@ export class ParamService {
     });
     return await loading.present();
   }
-  backToHome(){
+  backToHome() {
     if (sessionStorage.getItem('usuario') === null || JSON.parse(sessionStorage.getItem('usuario'))['tipo'] < 3) {
+      this.router.navigateByUrl('/');
+      return true;
+    }
+
+    return false;
+
+  }
+  backToHomeAdmin() {
+    if (sessionStorage.getItem('usuario') === null || JSON.parse(sessionStorage.getItem('usuario'))['tipo'] < 4) {
       this.router.navigateByUrl('/');
       return true;
     }

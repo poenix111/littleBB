@@ -78,6 +78,7 @@ export class PrestamoMaterialPage implements OnInit {
       );
   }
   color() {
+
     const reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
       'No-Auth': 'True'

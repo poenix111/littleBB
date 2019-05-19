@@ -26,12 +26,18 @@
         <ion-col>
           Entregar
         </ion-col>
+        <ion-col>
+          Costo
+        </ion-col>
+        <ion-col>
+          Dañado
+        </ion-col>
       </ng-template>
     </ion-row>
     <br />
 
     <ion-row
-      *ngFor="let l of libros; trackBy: trackElement"
+      *ngFor="let l of libros; let i = index; trackBy: trackElement"
       style="align-self: center;"
     >
       <ion-col>
@@ -66,6 +72,14 @@
             style="top: -30% !important;"
           >
             <ion-icon name="checkmark"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-input [(ngModel)]="dinero[i]" placeholder="$$$$$"></ion-input>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="cobro(l, dinero[i])" shape="round">
+            <ion-icon name="trash"></ion-icon>
           </ion-button>
         </ion-col>
       </ng-template>
@@ -119,15 +133,15 @@
     </ion-col>
 
     <ion-col>
-      {{m.marca}}
+      {{ m.marca }}
     </ion-col>
 
     <ion-col>
-      {{m.descripcion}}
+      {{ m.descripcion }}
     </ion-col>
 
     <ion-col>
-      {{m.numSerie}}
+      {{ m.numSerie }}
     </ion-col>
     <ion-col>
       {{ m.date }}
@@ -140,7 +154,11 @@
     <ng-container *ngIf="mostrar; else elseTemplate4"> </ng-container>
     <ng-template #elseTemplate4>
       <ion-col>
-        <ion-button (click)="returnMaterial(m)" shape="round" style="top: -30% !important;">
+        <ion-button
+          (click)="returnMaterial(m)"
+          shape="round"
+          style="top: -30% !important;"
+        >
           <ion-icon name="checkmark"></ion-icon>
         </ion-button>
       </ion-col>

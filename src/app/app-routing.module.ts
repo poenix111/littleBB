@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'editar-libro', loadChildren: './editar-libro/editar-libro.module#EditarLibroPageModule' },
   { path: 'editar-material', loadChildren: './editar-material/editar-material.module#EditarMaterialPageModule' },
   { path: 'modal-user', loadChildren: './modal-user/modal-user.module#ModalUserPageModule' },
+  { path: 'mostrar-pagos', loadChildren: './mostrar-pagos/mostrar-pagos.module#MostrarPagosPageModule' },
   
 ];
 

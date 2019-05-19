@@ -3,11 +3,13 @@ p{
 }
 
 .info{
-/*     overflow-x: scroll!important;
- */    
+   /*  overflow-y: scroll;
+    overflow-x: scroll; */
+    resize: both;
     text-align: center;
     word-wrap: break-word; 
     height:20vw;
     font-size:0.8em;
     font-weight:300;
+    
 }

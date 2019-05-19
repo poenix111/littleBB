@@ -1,32 +1,30 @@
-
-
 <ion-content padding>
   <!-- <app-barra-nav></app-barra-nav> -->
-  
-  <br>
-  <br>
 
-  <div *ngFor="let n of folios">
-    Folio activos : {{n.folio}}
-  </div>
+  <br />
+  <br />
+
+  <div *ngFor="let n of folios">Folio activos : {{ n.folio }}</div>
   <div *ngFor="let f of prestadoLibro">
-
-      <app-datagrid
+    <app-datagrid
       [info]="f"
       class="datagrid"
       [mostrar]="true"
       [libro]="true"
     ></app-datagrid>
+    <br />
+    <br />
+    <br />
+    <br />
   </div>
 
   <div *ngFor="let f of prestadoMaterial">
-
-      <app-datagrid
+    <app-datagrid
       [info]="f"
       class="datagrid"
       [mostrar]="true"
       [libro]="false"
     ></app-datagrid>
+    <br />
   </div>
-  
 </ion-content>

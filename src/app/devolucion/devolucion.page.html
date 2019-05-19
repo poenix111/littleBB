@@ -11,8 +11,8 @@
 
   <!-- Aqui comienza el datagrid -->
 
-</ion-content>
-
-<ion-content class = "datagrid">
-  <app-datagrid [info] = "prestados" [mostrar] = "false" [libro] = 'isBook' *ngIf="controladorDatagrid"></app-datagrid>
+  <div class = "datagrid">
+    <app-datagrid [info] = "prestados" [mostrar] = "false" [libro] = 'isBook' *ngIf="controladorDatagrid"></app-datagrid>
+  </div>
+  
 </ion-content>

@@ -13,6 +13,8 @@ export class DatagridComponent implements OnInit {
   @Input() libro: boolean;
   libros = [];
   materiales = [];
+
+  dinero = [0, 0, 0, 0, 0];
   constructor(public service: ParamService, public http: HttpClient) {}
   ngOnInit() {
     if (!this.service.backToHome()) {
@@ -48,7 +50,7 @@ export class DatagridComponent implements OnInit {
          /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
       }
     }, error =>{
-      console.log('ERROR');
+      console.log(error);
     });
 
   }
@@ -66,7 +68,21 @@ export class DatagridComponent implements OnInit {
       }
     }, error =>{
       console.log('ERROR');
+    }); 
+  }
+
+
+  cobro(libro, dinero) {
+    this.returnBook(libro)
+    const useful = Global.dominio + '/cobro-daños';
+    libro['folio'] = this.service.folio;
+    libro['dinero'] = dinero;
+    this.http.post(useful, libro, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
+      console.log(info);
+    }, error =>{
+      console.log('ERROR');
     });
-    
+
+    console.log(dinero);
   }
 }

@@ -72,7 +72,13 @@ export class MenuComponent implements OnInit {
 
   go_prestamoMaterial() {
     this.title = 'Prestamo Material';
-    this.router.navigateByUrl('/prestamo-material')
+    this.router.navigateByUrl('/prestamo-material');
+  }
+
+
+  go_mostrarDinero() {
+    this.title = 'Prestamo Material';
+    this.router.navigateByUrl('/mostrar-pagos');
   }
   doLogout() {
     sessionStorage.clear();

@@ -1,0 +1,15 @@
+<ion-content class="mainPagos" padding>
+
+<ion-card *ngFor="let p of pagos">
+    <ion-card-title> Pago hecho por:{{ p.usuario }}</ion-card-title>
+  
+    <ion-card-content>
+     
+      Fecha: {{ p.fecha }} <br />
+      Dinero: ${{ p.dinero }}
+
+      Folio: {{ p.folio }}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
