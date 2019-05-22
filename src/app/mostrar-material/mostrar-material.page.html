@@ -1,7 +1,22 @@
 <ion-content padding class="mainMostrarMaterial">
+  
+
+    <ion-list>
+        <ion-list-header>
+          <ion-label>Search</ion-label>
+        </ion-list-header>
+    
+        <ion-select  (ionChange)="mostrar()" [(ngModel)]="tipo" value = "1" okText="Okay" cancelText="Dismiss">
+            <ion-select-option  value="1">Laptop</ion-select-option>         
+          <ion-select-option  value="2">Bocina</ion-select-option>
+          <ion-select-option  value="3">Proyector</ion-select-option>
+
+          <ion-select-option value="4">NUmero de serie</ion-select-option>
+        </ion-select>
+      </ion-list>   
+
   <ion-item>
-    <ion-label>Numero de serie</ion-label>
-    <ion-input [(ngModel)]="buscar"></ion-input>
+    <ion-input  (keyup) = "mostrar()" [(ngModel)]="buscar"></ion-input>
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 

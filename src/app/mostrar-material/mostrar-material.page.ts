@@ -12,6 +12,7 @@ import { ParamService } from '../param.service';
 export class MostrarMaterialPage implements OnInit {
   buscar = '';
   materiales = [];
+  tipo = '1';
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -28,8 +29,12 @@ export class MostrarMaterialPage implements OnInit {
 
   mostrar() {
     this.materiales = [];
-    if (this.buscar === '*' || this.buscar === '') {
-      const useful = Global.dominio + '/recuperar-material/';
+    let help: Number;
+    help = Number(this.tipo);
+    if (help < 4 ) {
+      console.log("Entro al if");
+
+      const useful = Global.dominio + '/recuperar-material?categoria=' + this.tipo;
       this.http.get(useful).subscribe(
         data => {
           // tslint:disable-next-line: forin
@@ -40,6 +45,21 @@ export class MostrarMaterialPage implements OnInit {
         error => {}
       );
     }
+    if (this.buscar !== '') {
+      console.log("Entro al else");
+      const useful = Global.dominio + '/recuperar-material?filtro=' + this.buscar;
+      this.http.get(useful).subscribe(
+        data => {
+          // tslint:disable-next-line: forin
+          for (const m in data) {
+            this.materiales.push(data[m]);
+          }
+        },
+        error => {}
+      );
+    }
+      
+    
   }
 
   sendInfo(material) {

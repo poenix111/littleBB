@@ -279,7 +279,6 @@ export class PrestamoLibroPage implements OnInit {
 
   timeout() {
     setTimeout(() => {
-      console.log('Test');
       if (this.userColor && !this.controlClock) {
         this.user();
       }
