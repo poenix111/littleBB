@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Global} from '../global';
+import { Global } from '../global';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ParamService } from '../param.service';
@@ -7,20 +7,22 @@ import { ParamService } from '../param.service';
 @Component({
   selector: 'app-mostrar-material',
   templateUrl: './mostrar-material.page.html',
-  styleUrls: ['./mostrar-material.page.scss'],
+  styleUrls: ['./mostrar-material.page.scss']
 })
 export class MostrarMaterialPage implements OnInit {
   buscar = '';
   materiales = [];
-  constructor(public http: HttpClient, public router:Router, public service:ParamService) { }
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public service: ParamService
+  ) {}
   user: any;
   show: boolean;
   ngOnInit() {
-    if (!this.service.backToHome()) {
-      this.user = JSON.parse(sessionStorage.getItem('usuario'));
-      if (this.user !== null) {
-        this.show = true;
-      }
+    this.user = JSON.parse(sessionStorage.getItem('usuario'));
+    if (this.user !== null) {
+      this.show = true;
     }
   }
 
@@ -28,25 +30,22 @@ export class MostrarMaterialPage implements OnInit {
     this.materiales = [];
     if (this.buscar === '*' || this.buscar === '') {
       const useful = Global.dominio + '/recuperar-material/';
-      this.http.get(useful).subscribe(data => {
-
-// tslint:disable-next-line: forin
-        for (const m in data) {
-          this.materiales.push(data[m]);
-        }
-
-      }, error => {
-
-      });
-
+      this.http.get(useful).subscribe(
+        data => {
+          // tslint:disable-next-line: forin
+          for (const m in data) {
+            this.materiales.push(data[m]);
+          }
+        },
+        error => {}
+      );
     }
   }
 
-  sendInfo(material){
+  sendInfo(material) {
     this.router.navigateByUrl('/editar-material');
     this.service.info = material;
   }
-
 
   borrar(material) {
     const useful = Global.dominio + '/delete-material';
@@ -65,7 +64,6 @@ export class MostrarMaterialPage implements OnInit {
             );
           } else {
             this.materiales.splice(this.materiales.indexOf(material), 1);
-
           }
         },
         error => {
@@ -73,5 +71,4 @@ export class MostrarMaterialPage implements OnInit {
         }
       );
   }
-
 }
