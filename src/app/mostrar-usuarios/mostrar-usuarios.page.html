@@ -1,7 +1,19 @@
 <ion-content padding class="mainMostrarUsuarios">
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Search</ion-label>
+    </ion-list-header>
+
+    <ion-select (ionChange)="mostrar()" [(ngModel)]="tipo" value="1" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="1">Nombre</ion-select-option>
+      <ion-select-option value="2">Matricula</ion-select-option>
+    </ion-select>
+  </ion-list>
+
   <ion-item>
     <ion-label>Codigo</ion-label>
-    <ion-input [(ngModel)]="buscar"></ion-input>
+    <ion-input (keyup)="mostrar()" [(ngModel)]="buscar"></ion-input>
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
   <ion-content>
@@ -10,11 +22,9 @@
       <ion-card-title>{{ u.nombre }}</ion-card-title>
       <ion-card-content>
         <ion-button *ngIf="show && user['tipo'] > 2" (click)="presentModal(u)">
-          Editar</ion-button
-        >
+          Editar</ion-button>
         <ion-button *ngIf="show && user['tipo'] > 2" (click)="borrar(u)">
-          Borrar</ion-button
-        >
+          Borrar</ion-button>
         <br [hidden]="!show" />
         Fecha: {{ u.fechaRegistro }} <br />
         E-Mail {{ u.email }} <br />

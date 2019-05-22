@@ -14,6 +14,7 @@ export class MostrarUsuariosPage implements OnInit {
   usuarios = [];
   user = {};
   show: boolean;
+  tipo = '1';
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -29,8 +30,15 @@ export class MostrarUsuariosPage implements OnInit {
   }
 
   mostrar() {
-    if (this.buscar === '*' || this.buscar === '') {
-      const useful = Global.dominio + '/recuperar-usuarios';
+    let useful = Global.dominio + '/recuperar-usuarios';
+    if (this.tipo === '1' && this.buscar !== '') {
+      useful += '?nombre=';
+    } else if (this.tipo === '2' && this.buscar !== '') {
+      useful += '?matricula=';
+    }
+
+    useful += this.buscar;
+
       this.usuarios = [];
       this.http.get(useful).subscribe(
         data => {
@@ -43,7 +51,7 @@ export class MostrarUsuariosPage implements OnInit {
           console.log('Error');
         }
       );
-    }
+
   }
   presentModal(user) {
     this.router.navigateByUrl('/editar-usuarios');
