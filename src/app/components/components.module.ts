@@ -7,6 +7,7 @@ import { MenuComponent } from './menu/menu.component';
 import { DatagridComponent } from './datagrid/datagrid.component';
 import { ModalUserComponent } from './modal-user/modal-user.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,20 @@ import { FormsModule } from '@angular/forms';
     MenuComponent,
     DatagridComponent,
     ModalUserComponent,
+    NavbarComponent
   ],
   exports: [
     ToolbarComponent,
     MenuComponent,
     DatagridComponent,
-    ModalUserComponent
+    ModalUserComponent,
+    NavbarComponent
   ],
-  imports: [FormsModule, CommonModule, IonicModule, RouterModule]
+  imports: [
+    FormsModule,
+    CommonModule,
+    IonicModule,
+    RouterModule
+  ]
 })
-export class ComponentsModule {}
+export class ComponentsModule { }

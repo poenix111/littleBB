@@ -1,0 +1,39 @@
+.titulo {
+    color: white !important;
+    display: none;
+    margin-left: 5px;
+}
+
+.li-inicio {
+    display: none;
+}
+
+.fa-book {
+    color: white;
+    font-size: 30px;
+}
+
+@media only screen and (min-width: 1301px) {
+    .titulo {
+        transform: translateX(-50%);
+        left: 50%;
+        position: absolute;
+        top: 10px;
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .icono-libro {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .titulo {
+        display: block;
+    }
+    .li-inicio {
+        display: block;
+    }
+}

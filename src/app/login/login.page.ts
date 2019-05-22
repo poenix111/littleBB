@@ -27,10 +27,7 @@ export class LoginPage implements OnInit {
         if (info != null) {
           console.log(info);
           sessionStorage.setItem('usuario', JSON.stringify(info));
-          /* window.location.reload();
-          this.router.navigateByUrl('/'); */
-          // window.location.assign('/');
-           window.location.assign('/littleBB/home');
+          this.router.navigateByUrl('/home');
         }
       },
       error => {

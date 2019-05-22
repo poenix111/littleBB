@@ -1,0 +1,82 @@
+<ion-header>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a class="navbar-brand titulo">{{title}}</a>
+
+    <a class="icono-libro" [routerLink]="['/home']"><i class="fas fa-book"></i></a>
+
+    <ng-container *ngIf="mostrar; else elseTemplate">
+      <button class="btn btn-outline-danger btn-sm ml-auto mr-3 order-lg-last" (click)="doLogout()">
+        Log out
+      </button>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <button class="btn btn-outline-light btn-sm ml-auto mr-3 order-lg-last" (click)="go_login()">
+        Log in
+      </button>
+    </ng-template>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item li-inicio" active>
+          <a class="nav-link" [routerLink]="['/home']">Inicio</a>
+        </li>
+
+        <ng-container *ngIf="mostrar && user['tipo']  >  2;">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRegistrar" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Prestamo
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownRegistrar">
+              <a class="dropdown-item" (click)="go_prestamo()">Libros</a>
+              <a class="dropdown-item" (click)="go_prestamoMaterial()">Materiales</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" (click)="go_devolucion()">Devolucion</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRegistrar" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Registrar
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownRegistrar">
+              <a class="dropdown-item" (click)="go_registroUser()">Usuario</a>
+              <a class="dropdown-item" (click)="go_registroLibro()">Libro</a>
+              <a class="dropdown-item" (click)="go_registroMaterial()">Material</a>
+            </div>
+          </li>
+        </ng-container>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBusqueda" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Busqueda
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownBusqueda">
+            <a class="dropdown-item" (click)="go_mostrarUsuarios()" *ngIf="mostrar && user['tipo']  >  2;">Usuario</a>
+            <a class="dropdown-item" (click)="go_mostrarLibros()">Libro</a>
+            <a class="dropdown-item" (click)="go_mostrarMaterial()">Material</a>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="mostrar && user['tipo']  >  3">
+          <a class="nav-link" (click)="go_mostrarDinero()">Balance</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+</ion-header>
