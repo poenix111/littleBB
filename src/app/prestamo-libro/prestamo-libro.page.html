@@ -2,13 +2,8 @@
   <ion-content class="prestamo_libro">
     <div class="usuario">
       <p>Código de usuario:</p>
-      <ion-input
-        (keyup)="color()"
-        (keydown.enter)="user()"
-        [(ngModel)]="data['usuario']"
-        placeholder="Ingrese..."
-        [ngStyle]="{ color: userColor ? 'green' : 'red' }"
-      ></ion-input>
+      <ion-input (keyup)="color()" (keydown.enter)="user()" [(ngModel)]="data['usuario']" placeholder="Ingrese..."
+        [ngStyle]="{ color: userColor ? 'green' : 'red' }"></ion-input>
       <div [hidden]="!userColor">
         <ion-spinner [hidden]="controlClock" name="dots"></ion-spinner>
       </div>
@@ -18,44 +13,32 @@
 
     <div class="libro">
       <p>Código de libro:</p>
-      <ion-input
-        (keydown.enter)="pushBook()"
-        (keyup)="libro()"
-        [(ngModel)]="data['isbn']"
-        placeholder="Ingrese..."
-        [ngStyle]="{ color: bookColor ? 'green' : 'red' }"
-      ></ion-input>
+      <ion-input (keydown.enter)="pushBook()" (keyup)="libro()" [(ngModel)]="data['isbn']" placeholder="Ingrese..."
+        [ngStyle]="{ color: bookColor ? 'green' : 'red' }"></ion-input>
       <ion-button (click)="pushBook()" shape="round" id="bonton_info">
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </div>
 
+    <div class="espaciado">
     <div class="extension">
-      <div class="alinear">
-        <ion-checkbox
-          [(ngModel)]="extension"
-          checked="extension"
-          color="light"
-          id="checkbox_extend"
-        ></ion-checkbox>
+        <ion-checkbox [(ngModel)]="extension" checked="extension" color="light" id="checkbox_extend"></ion-checkbox>
         <p>Extension</p>
-        <ion-button shape="round" id="bonton_info">
+        <!--         <ion-button shape="round" id="bonton_info">
           <ion-icon name="information-circle-outline"></ion-icon>
-        </ion-button>
-      </div>
+        </ion-button> -->
     </div>
-    <p>Empleado: {{ usuario['nombre'] }}</p>
+    <div>
+      <p>Empleado: {{ usuario['nombre'] }}</p>
+    </div>
 
-    <p>Codigo:{{ usuario['id_usuario'] }}</p>
+    <div>
+      <p>Codigo:{{ usuario['id_usuario'] }}</p>
+    </div>
+  </div>
 
-    <ion-button (click)="confirmar()" color="success" expand="full"
-      >Generar tickect</ion-button>
+    <ion-button (click)="confirmar()" color="success" expand="full">Generar tickect</ion-button>
     <br />
-    <app-datagrid
-      [info]="libros"
-      class="datagrid"
-      [mostrar]="true"
-      [libro]="true"
-    ></app-datagrid>
+    <app-datagrid [info]="libros" class="datagrid" [mostrar]="true" [libro]="true"></app-datagrid>
   </ion-content>
 </ion-content>

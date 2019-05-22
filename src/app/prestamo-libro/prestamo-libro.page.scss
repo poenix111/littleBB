@@ -1,34 +1,46 @@
-.prestamo_libro{
+.prestamo_libro {
     text-align: center;
     top: 10%;
     width: 100%;
     //left: 8%;
 }
-#checkbox_extend{
-    top: 16px;
-}
 
-#boton_info{
+/* #checkbox_extend{
+    top: 16px;
+} */
+
+#boton_info {
     width: 10px;
 }
 
-.datagrid{
+.datagrid {
     text-align: right;
     top: 20%;
 }
 
-.usuario{
+.usuario {
     display: flex;
 }
 
-.libro{
+.libro {
     display: flex;
 }
 
-.extension{
-    display: inline-block;
+.extension {
+    display: inline-flex;
     text-align: center;
 }
-.alinear{
+
+/* .alinear{
     display: flex;
+} */
+
+p {
+    margin: auto;
+}
+
+.espaciado {
+    div {
+        margin-bottom: 8px;
+    }
 }
