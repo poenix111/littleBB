@@ -1,15 +1,24 @@
 <ion-content padding class="mainMostrarLibros">
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Search</ion-label>
+    </ion-list-header>
 
+    <ion-select [(ngModel)]="tipo" value = "1" okText="Okay" cancelText="Dismiss">
+      <ion-select-option  value="1">Nombre</ion-select-option>
+      <ion-select-option value="2">ISBN</ion-select-option>
+    </ion-select>
+  </ion-list>   
   <ion-item>
-    <ion-label>ISBN</ion-label>
-    <ion-input [(ngModel)]="buscar"></ion-input>
+
+    <ion-input (keyup)="mostrar()" [(ngModel)]="buscar"></ion-input>
     <ion-button (click)="mostrar()" color="dark">Buscar</ion-button>
   </ion-item>
 
-  <ion-card *ngFor="let l of libros" class = 'card'> 
+  <ion-card *ngFor="let l of libros" class="card">
     <ion-card-header>
-      <ion-card-subtitle>{{l.autor}}</ion-card-subtitle>
-      <ion-card-title>{{l.nombre}}</ion-card-title>
+      <ion-card-subtitle>{{ l.autor }}</ion-card-subtitle>
+      <ion-card-title>{{ l.nombre }}</ion-card-title>
     </ion-card-header>
     <ion-button *ngIf="show && user['tipo'] > 2" (click)="sendInfo(l)">
       Editar</ion-button
@@ -19,14 +28,13 @@
     >
     <br [hidden]="!show" />
     <ion-card-content>
-      Descripcion: {{l.descripcion}} <br>
-      Editorial: {{l.editorial}} Edicion: {{l.edicion}}<br>
-      Disponible: {{l.disponibles}},  Unicos: {{l.unicos}},  Existencia: {{l.existencia}}<br>
-      Genero: {{l.genero}}<br>
-      Idioma: {{l.idioma}}<br>
-      ISBN: {{l.isbn}}
+      Descripcion: {{ l.descripcion }} <br />
+      Editorial: {{ l.editorial }} Edicion: {{ l.edicion }}<br />
+      Disponible: {{ l.disponibles }}, Unicos: {{ l.unicos }}, Existencia:
+      {{ l.existencia }}<br />
+      Genero: {{ l.genero }}<br />
+      Idioma: {{ l.idioma }}<br />
+      ISBN: {{ l.isbn }}
     </ion-card-content>
-    
   </ion-card>
-
 </ion-content>

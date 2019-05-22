@@ -225,7 +225,6 @@ export class PrestamoMaterialPage implements OnInit {
 
   timeout() {
     setTimeout(() => {
-      console.log('Test');
       if (this.userColor && !this.controlClock) {
         this.user();
       }

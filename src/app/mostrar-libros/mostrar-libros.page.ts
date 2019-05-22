@@ -18,6 +18,7 @@ export class MostrarLibrosPage implements OnInit {
   ) {}
   user: any;
   show: boolean;
+  tipo = '1';
   ngOnInit() {
     this.user = JSON.parse(sessionStorage.getItem('usuario'));
     if (this.user !== null) {
@@ -27,23 +28,36 @@ export class MostrarLibrosPage implements OnInit {
 
   mostrar() {
     this.libros = [];
-    if (this.buscar === '*' || this.buscar === '') {
-      const useful = Global.dominio + '/recuperar-libros/';
+
+    if (this.tipo === '1') {
+      const useful = Global.dominio + '/recuperar-libros?nombre=' + this.buscar;
       this.http.get(useful).subscribe(
         data => {
           // tslint:disable-next-line: forin
           for (let l in data) {
             this.libros.push(data[l]);
-          }
           console.log(this.libros);
-        },
+        }
+      },
         error => {}
       );
-    } else {
-      console.log('building');
     }
-  }
-  sendInfo(l) {
+    if (this.tipo === '2') {
+        const useful = Global.dominio + '/recuperar-libros?filtro=' + this.buscar;
+        this.http.get(useful).subscribe(
+          data => {
+            // tslint:disable-next-line: forin
+            for (let l in data) {
+              this.libros.push(data[l]);
+            console.log(this.libros);
+          }
+        },
+          error => {}
+        );
+      }
+    }
+  
+  sendInfo(l){
     this.router.navigateByUrl('/editar-libro');
     this.service.info = l;
   }
