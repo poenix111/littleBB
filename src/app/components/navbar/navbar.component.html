@@ -9,7 +9,7 @@
 
     <a class="navbar-brand titulo">{{title}}</a>
 
-    <a class="icono-libro" [routerLink]="['/home']"><i class="fas fa-book"></i></a>
+    <a class="icono-libro" (click)="go_home()"><i class="fas fa-book"></i></a>
 
     <ng-container *ngIf="mostrar; else elseTemplate">
       <button class="btn btn-outline-danger btn-sm ml-auto mr-3 order-lg-last" (click)="doLogout()">
@@ -27,7 +27,7 @@
       <ul class="navbar-nav mr-auto">
 
         <li class="nav-item li-inicio" active>
-          <a class="nav-link" [routerLink]="['/home']">Inicio</a>
+          <a class="nav-link" (click)="go_home()">Inicio</a>
         </li>
 
         <ng-container *ngIf="mostrar && user['tipo']  >  2;">

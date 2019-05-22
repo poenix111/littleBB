@@ -37,6 +37,10 @@ export class NavbarComponent implements OnInit {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
   }
+  go_home() {
+    this.router.navigateByUrl('/home');
+    this.title = 'Home';
+  }
   go_login() {
     this.router.navigateByUrl('/login');
     this.title = 'Login';
