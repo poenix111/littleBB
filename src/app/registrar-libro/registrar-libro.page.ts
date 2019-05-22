@@ -36,7 +36,7 @@ export class RegistrarLibroPage implements OnInit {
         console.log(useful);
       },
       error => {
-        console.log('ERROR');
+        console.log(error);
       }
     );
 

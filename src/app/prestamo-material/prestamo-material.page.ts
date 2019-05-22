@@ -108,7 +108,7 @@ export class PrestamoMaterialPage implements OnInit {
   }
 
   searchContMaterials(reqHeader: HttpHeaders) {
-    const useful = Global.dominio + '/cont-books';
+    const useful = Global.dominio + '/cont-materials';
     this.http
       .post(useful, this.data, {
         headers: reqHeader,

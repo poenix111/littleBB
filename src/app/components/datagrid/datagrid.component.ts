@@ -22,7 +22,7 @@ export class DatagridComponent implements OnInit {
     }
   }
 
-// tslint:disable-next-line: use-life-cycle-interface
+  // tslint:disable-next-line: use-life-cycle-interface
   ngOnChanges(changes: SimpleChange) {
     console.log(changes);
     /* let newLibros = changes.currentValue;
@@ -39,49 +39,74 @@ export class DatagridComponent implements OnInit {
     return element ? element.guid : null;
   }
 
-   returnBook(libro) {
+  returnBook(libro) {
     const useful = Global.dominio + '/return-book';
     libro['folio'] = this.service.folio;
-    this.http.post(useful, libro, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
-      console.log(info);
-      this.libros.splice(this.libros.indexOf(libro), 1);
-      console.log(this.libros);
-      if (info === 'Usuario penalizado') {
-         /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
-      }
-    }, error =>{
-      console.log(error);
-    });
-
+    this.http
+      .post(useful, libro, {
+        headers: this.service.reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
+          console.log(info);
+          this.libros.splice(this.libros.indexOf(libro), 1);
+          console.log(this.libros);
+          if (info === 'Usuario penalizado') {
+            /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
-
 
   returnMaterial(material) {
     const useful = Global.dominio + '/return-material';
     material['folio'] = this.service.folio;
-    this.http.post(useful, material, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
-      console.log(info);
-      this.materiales.splice(this.libros.indexOf(material), 1);
-      console.log(this.materiales);
-      if (info === 'Usuario penalizado') {
-         /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
-      }
-    }, error =>{
-      console.log('ERROR');
-    }); 
+    this.http
+      .post(useful, material, {
+        headers: this.service.reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
+          console.log(info);
+          this.materiales.splice(this.libros.indexOf(material), 1);
+          console.log(this.materiales);
+          if (info === 'Usuario penalizado') {
+            /* this.service.presentAlert('Penalizacion', 'El usuario fue penalizado'); */
+          }
+        },
+        error => {
+          console.log('ERROR');
+        }
+      );
   }
 
-
   cobro(libro, dinero) {
-    this.returnBook(libro)
     const useful = Global.dominio + '/cobro-daños';
     libro['folio'] = this.service.folio;
     libro['dinero'] = dinero;
-    this.http.post(useful, libro, {headers : this.service.reqHeader, responseType: 'text'}).subscribe(  info => {
-      console.log(info);
-    }, error =>{
-      console.log('ERROR');
-    });
+    this.http
+      .post(useful, libro, {
+        headers: this.service.reqHeader,
+        responseType: 'text'
+      })
+      .subscribe(
+        info => {
+          console.log(info);
+          if (info === "Cobro realizado") {
+            this.returnBook(libro);
+
+          }
+
+        },
+        error => {
+          console.log('ERROR');
+        }
+      );
 
     console.log(dinero);
   }

@@ -16,13 +16,15 @@ export class HomePage implements OnInit{
   user = {};
   prestadoLibro = [];
   prestadoMaterial = [];
-  folios = {};
-
+  folios: any = [];
+  userBoolean: boolean;
   ngOnInit() {
+    this.userBoolean = false;
     this.user = JSON.parse(sessionStorage.getItem('usuario'));
     console.log(this.user);
     if (this.user !== null) {
        this.searchFolio();
+       this.userBoolean = true;
     }
 
   }
