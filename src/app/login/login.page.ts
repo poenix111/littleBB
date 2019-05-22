@@ -11,6 +11,7 @@ import { ParamService } from '../param.service';
 })
 export class LoginPage implements OnInit {
   data = {};
+  user: any;
   constructor(
     public http: HttpClient,
     public router: Router,
@@ -18,6 +19,13 @@ export class LoginPage implements OnInit {
   ) {}
 
   ngOnInit() {}
+
+  ionViewWillEnter() {
+    this.user = JSON.parse(sessionStorage.getItem('usuario'));
+    if (this.user != null) {
+      this.router.navigate(['/home']); // redirigir si ya esta logeado
+    }
+  }
 
   login() {
     const useful = Global.dominio + '/login';
@@ -28,6 +36,7 @@ export class LoginPage implements OnInit {
           console.log(info);
           sessionStorage.setItem('usuario', JSON.stringify(info));
           this.router.navigateByUrl('/home');
+          window.location.reload();
         }
       },
       error => {
