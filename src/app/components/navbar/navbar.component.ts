@@ -68,14 +68,14 @@ export class NavbarComponent implements OnInit {
 
   go_mostrarLibros() {
     this.router.navigateByUrl('/mostrar-libros');
-    this.title = 'Mostrar libros';
+    this.title = 'Busqueda libros';
   }
   go_mostrarMaterial() {
-    this.title = 'Mostrar material';
+    this.title = 'Busqueda material';
     this.router.navigateByUrl('/mostrar-material');
   }
   go_mostrarUsuarios() {
-    this.title = 'Mostrar usuarios';
+    this.title = 'Busqueda usuarios';
     this.router.navigateByUrl('/mostrar-usuarios');
   }
 
@@ -86,7 +86,7 @@ export class NavbarComponent implements OnInit {
 
 
   go_mostrarDinero() {
-    this.title = 'Prestamo Material';
+    this.title = 'Mostrar pagos';
     this.router.navigateByUrl('/mostrar-pagos');
   }
   doLogout() {
