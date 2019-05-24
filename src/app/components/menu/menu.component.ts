@@ -82,6 +82,7 @@ export class MenuComponent implements OnInit {
   }
   doLogout() {
     sessionStorage.clear();
-    window.location.reload();
+    /* window.location.reload(); */
+    this.go_login();
   }
 }
